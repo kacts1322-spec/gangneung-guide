@@ -17,7 +17,6 @@
             font-family: 'Pretendard', sans-serif;
             color: #2c3e50;
             line-height: 1.6;
-            /* 산뜻한 봄-여름 바다와 풀잎 느낌의 애니메이션 그라디언트 배경 */
             background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #a18cd1, #fbc2eb);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -37,7 +36,6 @@
             padding: 40px 20px;
         }
 
-        /* Glassmorphism Panel */
         .glass-panel {
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(15px);
@@ -72,15 +70,10 @@
             font-size: 2rem;
             margin-bottom: 30px;
             color: #1e272e;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         /* Checklist Styling */
-        .checklist-group {
-            margin-bottom: 25px;
-        }
+        .checklist-group { margin-bottom: 25px; }
         .checklist-title {
             font-weight: 700;
             font-size: 1.2rem;
@@ -98,9 +91,7 @@
             padding: 8px 15px;
             border-radius: 10px;
         }
-        .check-item:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
+        .check-item:hover { background: rgba(255, 255, 255, 0.3); }
         .check-item input[type="checkbox"] {
             appearance: none;
             width: 22px;
@@ -122,16 +113,11 @@
             content: '✔';
             color: white;
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-size: 14px;
         }
-        .check-item span {
-            font-size: 1.1rem;
-            color: #485460;
-            transition: 0.2s;
-        }
+        .check-item span { font-size: 1.1rem; color: #485460; transition: 0.2s; }
         .check-item input[type="checkbox"]:checked + span {
             text-decoration: line-through;
             color: #808e9b;
@@ -153,7 +139,7 @@
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .badge.blog { background: #03c75a; } /* Naver Green */
+        .badge.blog { background: #03c75a; }
         .badge.insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .badge.yt { background: #FF0000; }
 
@@ -173,6 +159,20 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .place-card::after {
+            content: '자세히 보기 >';
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            font-size: 0.8rem;
+            color: #3c40c6;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.3s;
         }
 
         .place-card:hover {
@@ -180,6 +180,7 @@
             background: rgba(255, 255, 255, 0.8);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
+        .place-card:hover::after { opacity: 1; }
 
         .place-title {
             font-size: 1.3rem;
@@ -191,7 +192,7 @@
         .place-desc {
             font-size: 0.95rem;
             color: #485460;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             flex-grow: 1;
         }
 
@@ -211,6 +212,81 @@
             border: 1px solid rgba(60, 64, 198, 0.2);
         }
 
+        /* Modal / Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 35px 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1e272e;
+            background: none;
+            border: none;
+            font-weight: bold;
+        }
+
+        .m-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e272e;
+            margin-bottom: 5px;
+        }
+        .m-desc {
+            font-size: 1rem;
+            color: #575fcf;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+        .m-info p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2c3e50;
+        }
+        .m-info b { color: #1e272e; }
+        
+        /* Modal Scrollbar */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: transparent; }
+        .modal-content::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+
         @media (max-width: 768px) {
             .container { padding: 20px; }
             .glass-panel { padding: 25px; }
@@ -224,54 +300,37 @@
 <div class="container">
     <header class="glass-panel">
         <h1>Gangneung Hotplace Guide</h1>
-        <p>어디갈지 고민은 그만! 강릉에서 가장 핫한 맛집/카페/빵집 총 45곳 완벽 큐레이션 🌊</p>
+        <p>강릉에서 가장 핫한 맛집/카페/빵집 45곳 완벽 큐레이션 🌊<br><small>(카드를 클릭하면 상세 정보가 나타납니다)</small></p>
     </header>
 
-    <!-- Checklist Section -->
+    <!-- Checklist -->
     <section class="glass-panel">
         <h2>👶 아기랑 여행 필수 짐싸기 체크리스트</h2>
         <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            
             <div class="checklist-group">
                 <div class="checklist-title">🍱 먹거리 & 식기</div>
                 <label class="check-item"><input type="checkbox"><span>실온 이유식 / 햇반</span></label>
                 <label class="check-item"><input type="checkbox"><span>아기 김, 후리가케</span></label>
-                <label class="check-item"><input type="checkbox"><span>간식 (떡뻥, 퓨레, 과일)</span></label>
-                <label class="check-item"><input type="checkbox"><span>멸균 우유 & 보리차</span></label>
-                <label class="check-item"><input type="checkbox"><span>휴대용 턱받이, 스푼/포크</span></label>
-                <label class="check-item"><input type="checkbox"><span>아기 주방세제(소분), 수세미</span></label>
+                <label class="check-item"><input type="checkbox"><span>간식 (떡뻥, 퓨레)</span></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-title">🛁 위생 & 목욕</div>
-                <label class="check-item"><input type="checkbox"><span>기저귀 (1박 기준 15개 이상)</span></label>
-                <label class="check-item"><input type="checkbox"><span>휴대용 물티슈 (대용량 1, 휴대 2)</span></label>
-                <label class="check-item"><input type="checkbox"><span>탑투토워시 / 로션 / 수딩젤</span></label>
-                <label class="check-item"><input type="checkbox"><span>아기 칫솔 / 무불소 치약</span></label>
-                <label class="check-item"><input type="checkbox"><span>아기 면봉 / 손톱깎이</span></label>
-                <label class="check-item"><input type="checkbox"><span>휴대용 방수요</span></label>
+                <label class="check-item"><input type="checkbox"><span>기저귀 / 휴대용 방수요</span></label>
+                <label class="check-item"><input type="checkbox"><span>물티슈 (대용량/휴대용)</span></label>
+                <label class="check-item"><input type="checkbox"><span>탑투토워시 / 로션</span></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-title">👕 의류 & 외출</div>
-                <label class="check-item"><input type="checkbox"><span>여벌 옷 (하루 3세트 여유)</span></label>
-                <label class="check-item"><input type="checkbox"><span>내복 (잠옷용) / 양말</span></label>
-                <label class="check-item"><input type="checkbox"><span>바람막이 (강릉 바닷바람 필수)</span></label>
-                <label class="check-item"><input type="checkbox"><span>햇빛 차단 모자 / 선크림</span></label>
-                <label class="check-item"><input type="checkbox"><span>가제 손수건 (10장)</span></label>
-                <label class="check-item"><input type="checkbox"><span>휴대용 유모차 & 아기띠</span></label>
+                <label class="check-item"><input type="checkbox"><span>여벌 옷 / 바람막이</span></label>
+                <label class="check-item"><input type="checkbox"><span>가제 손수건 (넉넉히)</span></label>
+                <label class="check-item"><input type="checkbox"><span>휴대용 유모차 / 아기띠</span></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-title">💊 건강 & 놀이</div>
-                <label class="check-item"><input type="checkbox"><span>해열제 (아세트아미노펜/이부프로펜)</span></label>
-                <label class="check-item"><input type="checkbox"><span>체온계 (필수)</span></label>
-                <label class="check-item"><input type="checkbox"><span>비상연고 / 밴드</span></label>
-                <label class="check-item"><input type="checkbox"><span>모기 기피제 / 버물리</span></label>
-                <label class="check-item"><input type="checkbox"><span>카시트용 장난감 / 사운드북</span></label>
+                <label class="check-item"><input type="checkbox"><span>해열제 / 체온계 (필수)</span></label>
+                <label class="check-item"><input type="checkbox"><span>카시트용 장난감</span></label>
                 <label class="check-item"><input type="checkbox"><span>애착 인형 / 쪽쪽이</span></label>
             </div>
-
         </div>
     </section>
 
@@ -281,27 +340,27 @@
         
         <h3 class="platform-title"><span class="badge blog">BLOG</span> 네이버 현지인 추천 노포 & 찐맛집</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="r_blog_1">
                 <div class="place-title">강릉현대장칼국수</div>
                 <div class="place-desc">백종원도 극찬한 얼큰한 고추장 베이스의 장칼국수 3대 맛집. 해장으로 최고.</div>
                 <div class="tag-wrap"><span class="tag">#장칼국수</span><span class="tag">#얼큰해장</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_blog_2">
                 <div class="place-title">9남매두부집</div>
                 <div class="place-desc">관광객보다 동네 주민이 더 찾는 곳. 자극적이지 않고 깔끔한 순두부전골.</div>
                 <div class="tag-wrap"><span class="tag">#순두부</span><span class="tag">#현지인맛집</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_blog_3">
                 <div class="place-title">해미가</div>
                 <div class="place-desc">물회를 시키면 수육과 미역국, 파전까지 나오는 미친 가성비의 광어물회 전문점.</div>
                 <div class="tag-wrap"><span class="tag">#광어물회</span><span class="tag">#가성비끝판왕</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_blog_4">
                 <div class="place-title">정화식당</div>
                 <div class="place-desc">20년 전통. 매콤달콤한 오징어볶음과 갈치조림이 기가 막힌 밥도둑 백반집.</div>
                 <div class="tag-wrap"><span class="tag">#오징어볶음</span><span class="tag">#노포백반</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_blog_5">
                 <div class="place-title">연곡쿵쿵소</div>
                 <div class="place-desc">아는 사람만 가는 한우 숯불구이 맛집. 질 좋은 소고기를 합리적인 가격에.</div>
                 <div class="tag-wrap"><span class="tag">#한우구이</span><span class="tag">#로컬고기집</span></div>
@@ -310,27 +369,27 @@
 
         <h3 class="platform-title"><span class="badge insta">INSTA</span> 힙하고 예쁜 핫플레이스</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="r_insta_1">
                 <div class="place-title">강릉육미</div>
                 <div class="place-desc">넓고 쾌적한 공간에서 굽는 의성마늘 양념소갈비. 깔끔한 인테리어가 돋보임.</div>
                 <div class="tag-wrap"><span class="tag">#양념소갈비</span><span class="tag">#모임추천</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_insta_2">
                 <div class="place-title">세레니타</div>
                 <div class="place-desc">푸른 잔디 정원이 아름다운 이탈리안 다이닝. 분위기와 맛을 모두 잡은 곳.</div>
                 <div class="tag-wrap"><span class="tag">#정원레스토랑</span><span class="tag">#파스타</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_insta_3">
                 <div class="place-title">피터콤마안목가게</div>
                 <div class="place-desc">하와이안 펍 느낌의 이국적인 인테리어에서 즐기는 육즙 가득 수제버거.</div>
                 <div class="tag-wrap"><span class="tag">#수제버거</span><span class="tag">#안목해변</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_insta_4">
                 <div class="place-title">미트컬쳐</div>
                 <div class="place-desc">강릉에서 만나는 수준 높은 유러피안 다이닝. 헤링(청어) 요리와 스테이크가 일품.</div>
                 <div class="tag-wrap"><span class="tag">#미러피안다이닝</span><span class="tag">#예약필수</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_insta_5">
                 <div class="place-title">메시56</div>
                 <div class="place-desc">고즈넉한 일본풍 외관과 정갈하게 나오는 프리미엄 카이센동(해산물 덮밥) 전문점.</div>
                 <div class="tag-wrap"><span class="tag">#카이센동</span><span class="tag">#일식당</span></div>
@@ -339,29 +398,29 @@
 
         <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 또간집 & 쯔양 검증 맛집</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="r_yt_1">
                 <div class="place-title">장안횟집</div>
-                <div class="place-desc">또간집 강릉편 1등! 가자미 물회도 맛있지만 기본으로 나오는 '우럭미역국'이 미친 맛.</div>
+                <div class="place-desc">또간집 강릉편 1등! 가자미 물회도 맛있지만 기본으로 나오는 '우럭미역국'이 진국.</div>
                 <div class="tag-wrap"><span class="tag">#또간집1등</span><span class="tag">#물회</span><span class="tag">#우럭미역국</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_yt_2">
                 <div class="place-title">버드나무 브루어리</div>
                 <div class="place-desc">알쓸신잡 등 다수 방송 출연. 강릉의 색을 담은 수제 맥주와 맛있는 피자.</div>
                 <div class="tag-wrap"><span class="tag">#수제맥주</span><span class="tag">#양조장</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_yt_3">
                 <div class="place-title">옛카나리아</div>
                 <div class="place-desc">어마어마한 양과 매콤한 양념의 대구머리찜 단일 메뉴로 승부하는 웨이팅 맛집.</div>
                 <div class="tag-wrap"><span class="tag">#대구머리찜</span><span class="tag">#매콤달콤</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_yt_4">
                 <div class="place-title">엄지네포장마차</div>
-                <div class="place-desc">전국에 꼬막비빔밥 열풍을 일으킨 원조집. 들기름 고소한 꼬막과 육사시미 조합 필수.</div>
+                <div class="place-desc">전국에 꼬막비빔밥 열풍을 일으킨 원조집. 들기름 고소한 꼬막과 육사시미 필수.</div>
                 <div class="tag-wrap"><span class="tag">#꼬막비빔밥</span><span class="tag">#육사시미</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="r_yt_5">
                 <div class="place-title">동화가든</div>
-                <div class="place-desc">짬뽕순두부(원조 짬순)의 발상지. 불향 가득한 짬뽕 국물과 부드러운 순두부의 조화.</div>
+                <div class="place-desc">짬뽕순두부(짬순) 발상지. 불향 가득한 짬뽕 국물과 부드러운 순두부의 조화.</div>
                 <div class="tag-wrap"><span class="tag">#짬뽕순두부</span><span class="tag">#웨이팅극악</span></div>
             </div>
         </div>
@@ -373,27 +432,27 @@
         
         <h3 class="platform-title"><span class="badge blog">BLOG</span> 여유로운 오션뷰 & 감성 카페</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="c_blog_1">
                 <div class="place-title">보헤미안 로스터즈 박이추</div>
-                <div class="place-desc">대한민국 1세대 바리스타 박이추 명장의 핸드드립 커피를 맛볼 수 있는 커피 성지.</div>
+                <div class="place-desc">대한민국 1세대 바리스타 박이추 명장의 핸드드립 커피를 맛볼 수 있는 곳.</div>
                 <div class="tag-wrap"><span class="tag">#핸드드립</span><span class="tag">#커피명장</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_blog_2">
                 <div class="place-title">그리우니</div>
                 <div class="place-desc">초당순두부 마을에 위치한 고즈넉한 대형 한옥 카페. 순두부 라떼가 시그니처.</div>
                 <div class="tag-wrap"><span class="tag">#한옥카페</span><span class="tag">#초당순두부마을</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_blog_3">
                 <div class="place-title">미르마르</div>
                 <div class="place-desc">안목해변에서 가장 압도적인 통창 오션뷰와 탁 트인 루프탑을 자랑하는 곳.</div>
                 <div class="tag-wrap"><span class="tag">#안목해변</span><span class="tag">#통창오션뷰</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_blog_4">
                 <div class="place-title">카페오션스</div>
                 <div class="place-desc">강문해변 앞 수제버거와 스페셜티 커피를 함께 즐길 수 있는 널찍한 감성 카페.</div>
                 <div class="tag-wrap"><span class="tag">#강문해변</span><span class="tag">#수제버거</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_blog_5">
                 <div class="place-title">사천진리카페</div>
                 <div class="place-desc">사천해변의 한적하고 조용한 바다를 보며 힐링할 수 있는 따뜻한 톤의 카페.</div>
                 <div class="tag-wrap"><span class="tag">#사천해변</span><span class="tag">#물멍</span></div>
@@ -402,27 +461,27 @@
 
         <h3 class="platform-title"><span class="badge insta">INSTA</span> 셔터만 눌러도 인생샷 포토존</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="c_insta_1">
                 <div class="place-title">카페 툇마루</div>
-                <div class="place-desc">설명이 필요 없는 강릉 1티어 핫플. 쫀득한 흑임자 크림 라떼 한 잔을 위해 전국에서 몰림.</div>
+                <div class="place-desc">설명이 필요 없는 강릉 1티어 핫플. 쫀득한 흑임자 크림 라떼 한 잔을 위한 웨이팅.</div>
                 <div class="tag-wrap"><span class="tag">#흑임자라떼</span><span class="tag">#극악웨이팅</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_insta_2">
                 <div class="place-title">엔드투앤드</div>
                 <div class="place-desc">웅장한 소나무 숲과 물이 흐르는 거대한 야외 정원을 가진 압도적인 스케일의 카페.</div>
                 <div class="tag-wrap"><span class="tag">#대형정원</span><span class="tag">#소나무뷰</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_insta_3">
                 <div class="place-title">강냉이소쿠리</div>
-                <div class="place-desc">외할머니 댁을 개조한 툇마루 감성. 달달한 옥수수 커피와 강냉이 아이스크림이 꿀맛.</div>
+                <div class="place-desc">외할머니 댁을 개조한 툇마루 감성. 옥수수 커피와 강냉이 아이스크림이 꿀맛.</div>
                 <div class="tag-wrap"><span class="tag">#레트로감성</span><span class="tag">#옥수수커피</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_insta_4">
                 <div class="place-title">스테이인터뷰</div>
                 <div class="place-desc">정동진 바다와 기찻길이 한눈에 내려다보이는 오두막 포토존이 인스타를 도배한 곳.</div>
                 <div class="tag-wrap"><span class="tag">#오두막포토존</span><span class="tag">#정동진뷰</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_insta_5">
                 <div class="place-title">갤러리밥스</div>
                 <div class="place-desc">초당옥수수커피(초당옥크라떼)의 원조. 달콤하고 고소한 옥수수 풍미가 미쳤음.</div>
                 <div class="tag-wrap"><span class="tag">#초당옥수수커피</span><span class="tag">#테이크아웃추천</span></div>
@@ -431,29 +490,29 @@
 
         <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 조회수 터진 초대형 & 뷰맛집</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="c_yt_1">
                 <div class="place-title">테라로사 커피공장 본점</div>
                 <div class="place-desc">커피 공장에 온 듯한 웅장한 붉은 벽돌 건물. 강릉 여행 필수 코스로 꼽히는 로스터리.</div>
                 <div class="tag-wrap"><span class="tag">#커피성지</span><span class="tag">#거대규모</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_yt_2">
                 <div class="place-title">순두부 젤라또</div>
                 <div class="place-desc">초당 순두부로 만든 이색 아이스크림. 쫀득하고 슴슴한 단맛에 유튜브 먹방 단골.</div>
                 <div class="tag-wrap"><span class="tag">#젤라또</span><span class="tag">#순두부디저트</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_yt_3">
                 <div class="place-title">곳</div>
                 <div class="place-desc">사천해변의 초대형 카페. 옥상에 있는 '천국의 계단' 조형물에서 인증샷은 필수.</div>
                 <div class="tag-wrap"><span class="tag">#천국의계단</span><span class="tag">#사천대형카페</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_yt_4">
                 <div class="place-title">346커피스토리</div>
                 <div class="place-desc">강문해변 앞 3층 규모의 거대한 베이커리 카페. 수십 종의 빵과 엄청난 오션뷰.</div>
                 <div class="tag-wrap"><span class="tag">#베이커리카페</span><span class="tag">#강문해변뷰</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="c_yt_5">
                 <div class="place-title">초당커피정미소</div>
-                <div class="place-desc">옛 정미소를 힙하게 리모델링. 구수한 '누룽지 크림 라떼'가 독특해서 영상에 자주 나옴.</div>
+                <div class="place-desc">옛 정미소를 리모델링. 구수한 '누룽지 크림 라떼'가 독특해서 영상에 자주 나옴.</div>
                 <div class="tag-wrap"><span class="tag">#빈티지카페</span><span class="tag">#누룽지라떼</span></div>
             </div>
         </div>
@@ -465,27 +524,27 @@
         
         <h3 class="platform-title"><span class="badge blog">BLOG</span> 변함없는 로컬 & 추억의 빵집</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="b_blog_1">
                 <div class="place-title">바로방</div>
                 <div class="place-desc">백종원 3대천왕 출연. 야채빵, 단팥빵, 찹쌀도넛 등 레트로 끝판왕 옛날 빵집.</div>
                 <div class="tag-wrap"><span class="tag">#야채빵</span><span class="tag">#추억의도넛</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_blog_2">
                 <div class="place-title">개두릅통밀빵</div>
                 <div class="place-desc">강릉 특산물인 개두릅을 넣어 만든 건강한 하드 계열 빵. 소화가 잘 되는 현지인 픽.</div>
                 <div class="tag-wrap"><span class="tag">#건강빵</span><span class="tag">#비건옵션</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_blog_3">
                 <div class="place-title">동해기정</div>
                 <div class="place-desc">강릉 오면 박스째 사가는 발효 기정떡(술떡). 버터에 구워 먹으면 기절하는 맛.</div>
                 <div class="tag-wrap"><span class="tag">#기정떡</span><span class="tag">#선물용</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_blog_4">
                 <div class="place-title">손병욱베이커리</div>
                 <div class="place-desc">시내에 위치한 터줏대감 빵집. 폭신한 카스텔라와 맘모스빵이 베스트셀러.</div>
                 <div class="tag-wrap"><span class="tag">#옛날빵집</span><span class="tag">#동네맛집</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_blog_5">
                 <div class="place-title">싸전</div>
                 <div class="place-desc">바로방과 쌍벽을 이루는 중앙시장 근처 도넛/꽈배기 노포 빵집. 가성비 최고.</div>
                 <div class="tag-wrap"><span class="tag">#설탕꽈배기</span><span class="tag">#찹쌀도넛</span></div>
@@ -494,27 +553,27 @@
 
         <h3 class="platform-title"><span class="badge insta">INSTA</span> 미친 비주얼 디저트 핫플</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="b_insta_1">
                 <div class="place-title">마카모예베이글</div>
                 <div class="place-desc">초당두부를 넣은 쫀득한 베이글과 대파 크림치즈의 조합. 인스타 릴스 폭발.</div>
                 <div class="tag-wrap"><span class="tag">#두부베이글</span><span class="tag">#비주얼최고</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_insta_2">
                 <div class="place-title">인솔트 베이커리</div>
                 <div class="place-desc">다양한 토핑이 올라간 바삭하고 버터 풍미 터지는 소금빵 전문점.</div>
                 <div class="tag-wrap"><span class="tag">#소금빵맛집</span><span class="tag">#패키지예쁨</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_insta_3">
                 <div class="place-title">오프더월</div>
                 <div class="place-desc">초당옥수수 타르트와 황치즈 디저트 등 예쁘고 진한 구움과자 천국.</div>
                 <div class="tag-wrap"><span class="tag">#옥수수타르트</span><span class="tag">#구움과자</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_insta_4">
                 <div class="place-title">돌체테리아</div>
                 <div class="place-desc">빵 반, 크림 반! 터질듯한 크림빵과 쫀득한 식빵(먹물치즈 등)으로 오픈런 필수.</div>
                 <div class="tag-wrap"><span class="tag">#크림빵</span><span class="tag">#먹물치즈식빵</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_insta_5">
                 <div class="place-title">사임당인절미</div>
                 <div class="place-desc">부드러운 카스텔라 가루가 듬뿍 묻은 인절미. 강릉 여행 기념 선물용 1순위.</div>
                 <div class="tag-wrap"><span class="tag">#카스텔라인절미</span><span class="tag">#선물추천</span></div>
@@ -523,27 +582,27 @@
 
         <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 빵튜버들이 쓸어가는 빵지순례</h3>
         <div class="grid-container">
-            <div class="place-card">
+            <div class="place-card" data-id="b_yt_1">
                 <div class="place-title">만동제과</div>
                 <div class="place-desc">마늘바게트계의 레전드. 겉은 바삭하고 속은 달달한 마늘 버터 소스에 절여져 있음.</div>
                 <div class="tag-wrap"><span class="tag">#마늘바게트</span><span class="tag">#무조건포장</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_yt_2">
                 <div class="place-title">강릉빵다방</div>
                 <div class="place-desc">인절미 콩고물이 폭탄처럼 묻어있고 안에는 크림이 가득한 '인절미크림빵'의 원조.</div>
                 <div class="tag-wrap"><span class="tag">#인절미크림빵</span><span class="tag">#오픈런</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_yt_3">
                 <div class="place-title">가루베이커리</div>
                 <div class="place-desc">우유 크림이 듬뿍 들어간 몽글몽글한 '원준이 엉덩이빵'이 유튜브 먹방 단골.</div>
-                <div class="tag-wrap"><span class="tag">#원준이엉덩이빵</span><span class="tag">#동네대형빵집</span></div>
+                <div class="tag-wrap"><span class="tag">#원준이엉덩이빵</span><span class="tag">#대형빵집</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_yt_4">
                 <div class="place-title">팡파미유</div>
                 <div class="place-desc">강릉 중앙시장의 명물, 육쪽마늘빵. 따뜻할 때 먹으면 크림치즈와 마늘향이 예술.</div>
                 <div class="tag-wrap"><span class="tag">#육쪽마늘빵</span><span class="tag">#중앙시장</span></div>
             </div>
-            <div class="place-card">
+            <div class="place-card" data-id="b_yt_5">
                 <div class="place-title">빵아저씨</div>
                 <div class="place-desc">현지인들이 숨겨놓고 먹는다는 두툼한 버터와 팥이 꽉 찬 앙버터 맛집.</div>
                 <div class="tag-wrap"><span class="tag">#앙버터</span><span class="tag">#가성비갑</span></div>
@@ -552,6 +611,564 @@
     </section>
 
 </div>
+
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="m-title" id="mTitle">장소명</div>
+        <div class="m-desc" id="mDesc">한 줄 소개</div>
+        <div class="m-info">
+            <p id="mBaby">🍼 <b>영아 팁:</b> -</p>
+            <p id="mDistance">🚗 <b>거리:</b> -</p>
+            <p id="mTime">⏱ <b>운영시간:</b> -</p>
+            <p id="mPhone">📞 <b>전화번호:</b> -</p>
+            <p id="mRating">🌟 <b>네이버/카카오:</b> -</p>
+            <p id="mMenu">🍽 <b>인기메뉴:</b> -</p>
+            <p id="mTip">💡 <b>꿀팁:</b> -</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const placesData = {
+        // --- Restaurants ---
+        "r_blog_1": {
+            title: "강릉현대장칼국수",
+            desc: "백종원도 극찬한 얼큰한 고추장 베이스의 장칼국수 3대 맛집.",
+            baby: "내부가 다소 좁고 뜨거운 국물 요리라 유모차 진입은 어려우며, 매운 걸 못 먹는 아이를 위한 '맑은 칼국수'를 따로 주문 가능합니다.",
+            distance: "씨마크에서 차로 15분",
+            time: "10:00~19:00 (화요일 휴무)",
+            phone: "033-645-0929",
+            rating: "네이버 4.4 / 카카오 3.8",
+            menu: "장칼국수 (9,000원), 맑은칼국수 (9,000원)",
+            tip: "오픈런 필수! 골목 주차가 헬이므로 인근 유료 주차장을 맘 편히 이용하세요."
+        },
+        "r_blog_2": {
+            title: "9남매두부집",
+            desc: "관광객보다 동네 주민이 더 찾는 곳. 자극적이지 않고 깔끔한 순두부전골.",
+            baby: "아기의자는 없지만 방바닥(좌식) 자리가 있어 기어 다니는 아이나 어린 아기와 함께 식사하기에 오히려 좋습니다.",
+            distance: "씨마크에서 차로 5분 (초당동)",
+            time: "08:00~20:00 (목요일 휴무)",
+            phone: "033-653-9909",
+            rating: "네이버 4.3 / 카카오 4.0",
+            menu: "순두부전골 (20,000원/2인), 두부전골 (20,000원/2인)",
+            tip: "오전 8시부터 영업하여 아침 식사로 아주 제격입니다."
+        },
+        "r_blog_3": {
+            title: "해미가",
+            desc: "물회를 시키면 수육과 미역국, 파전까지 나오는 미친 가성비의 광어물회 전문점.",
+            baby: "하이체어가 있으며, 어른들은 물회를 먹고 아기는 기본으로 나오는 '수육'과 '미역국'으로 밥을 먹일 수 있어 가족 단위로 완벽합니다.",
+            distance: "씨마크에서 차로 15분 (교동)",
+            time: "11:30~21:00 (일요일 휴무)",
+            phone: "033-647-1003",
+            rating: "네이버 4.5 / 카카오 3.9",
+            menu: "광어물회 (18,000원), 해미가스페셜 (70,000원)",
+            tip: "가성비가 너무 좋아 웨이팅이 깁니다. 점심/저녁 피크 시간을 피해서 방문하세요."
+        },
+        "r_blog_4": {
+            title: "정화식당",
+            desc: "20년 전통. 매콤달콤한 오징어볶음과 갈치조림이 기가 막힌 밥도둑 백반집.",
+            baby: "노포 식당이라 공간이 협소하여 유모차 반입은 불가능합니다. 아기띠나 부스터 시트 지참을 권장합니다.",
+            distance: "씨마크에서 차로 20분 (강릉역 인근)",
+            time: "10:30~20:30 (일요일 휴무)",
+            phone: "033-647-1121",
+            rating: "네이버 4.6 / 카카오 4.2",
+            menu: "오징어볶음 (10,000원), 갈치조림 (11,000원)",
+            tip: "현지인 밥집으로 가격이 매우 저렴합니다. 반찬 소진 시 일찍 문을 닫습니다."
+        },
+        "r_blog_5": {
+            title: "연곡쿵쿵소",
+            desc: "아는 사람만 가는 한우 숯불구이 맛집. 질 좋은 소고기를 합리적인 가격에.",
+            baby: "아기의자가 구비되어 있으며, 질기고 기름진 고기 대신 부드러운 소고기라 16개월 아기도 잘 먹습니다.",
+            distance: "씨마크에서 차로 20분 (연곡해변 인근)",
+            time: "11:30~22:00 (명절 휴무)",
+            phone: "033-662-7992",
+            rating: "네이버 4.4 / 카카오 4.1",
+            menu: "한우 모듬구이 (싯가), 육회",
+            tip: "정육식당 스타일로 고기를 직접 골라 구워 먹어 가성비가 훌륭합니다."
+        },
+        "r_insta_1": {
+            title: "강릉육미",
+            desc: "넓고 쾌적한 공간에서 굽는 의성마늘 양념소갈비.",
+            baby: "매장이 쾌적하고 연기가 잘 빠지며, 튼튼한 하이체어가 다수 구비되어 있어 고깃집임에도 유아 동반이 쾌적합니다.",
+            distance: "씨마크에서 차로 15분",
+            time: "16:00~23:00",
+            phone: "0507-1353-8323",
+            rating: "네이버 4.7 / 카카오 4.5",
+            menu: "의성마늘양념소갈비 (22,000원)",
+            tip: "교동택지 공영주차장 바로 앞이라 주차가 매우 편리합니다."
+        },
+        "r_insta_2": {
+            title: "세레니타",
+            desc: "푸른 잔디 정원이 아름다운 이탈리안 다이닝.",
+            baby: "하이체어와 아기 식기가 완비되어 있고, 식사 전후로 넓은 잔디밭에서 아기가 뛰어놀 수 있어 에너지 소모에 좋습니다.",
+            distance: "씨마크에서 차로 10분",
+            time: "11:30~21:00 (브레이크타임 15-17시, 월 휴무)",
+            phone: "0507-1473-7769",
+            rating: "네이버 4.6 / 카카오 4.3",
+            menu: "안심 스테이크, 까르보나라",
+            tip: "기념일 가족 식사로 강력 추천하며 분위기 좋은 야외 테라스석은 사전 예약하세요."
+        },
+        "r_insta_3": {
+            title: "피터콤마안목가게",
+            desc: "하와이안 펍 느낌의 이국적인 인테리어에서 즐기는 육즙 가득 수제버거.",
+            baby: "하이체어 구비됨. 매장 내부 공간이 여유로워 유모차를 세워두기도 무리가 없습니다.",
+            distance: "씨마크에서 차로 10분 (안목해변)",
+            time: "10:00~21:00",
+            phone: "033-652-5858",
+            rating: "네이버 4.4 / 카카오 4.0",
+            menu: "폴앤메리 버거 (9,500원), 갈릭쉬림프",
+            tip: "안목해변 카페거리 초입에 있어 식사 후 커피 마시러 이동하기에 최적의 동선입니다."
+        },
+        "r_insta_4": {
+            title: "미트컬쳐",
+            desc: "강릉에서 만나는 수준 높은 유러피안 다이닝. 헤링(청어) 요리와 스테이크가 일품.",
+            baby: "분위기가 차분한 다이닝이지만 하이체어를 제공합니다. 조용한 식사 매너가 요구되므로 아기 컨디션이 좋을 때 방문 권장.",
+            distance: "씨마크에서 차로 10분 (안목해변 인근)",
+            time: "11:30~22:00 (화, 수 휴무)",
+            phone: "033-652-5439",
+            rating: "네이버 4.8 / 카카오 4.6",
+            menu: "헤링(청어) 플레이트, 양갈비 스테이크",
+            tip: "캐치테이블 등 앱을 통한 100% 사전 예약제로 운영되니 여행 계획 시 미리 예약하세요."
+        },
+        "r_insta_5": {
+            title: "메시56",
+            desc: "고즈넉한 일본풍 외관과 정갈하게 나오는 프리미엄 카이센동 전문점.",
+            baby: "하이체어가 있으며, 아기가 먹을 수 있도록 맨밥(초대리 안 된 밥)을 따로 요청할 수 있습니다.",
+            distance: "씨마크에서 차로 5분 (초당동)",
+            time: "11:30~21:00 (화요일 휴무)",
+            phone: "0507-1322-5633",
+            rating: "네이버 4.5 / 카카오 4.2",
+            menu: "오늘의 추천 카이센동 (25,000원)",
+            tip: "외관 포토존이 예뻐 사진 찍기 좋습니다. 주변 공영주차장 이용 요망."
+        },
+        "r_yt_1": {
+            title: "장안횟집",
+            desc: "또간집 강릉편 1등! 가자미 물회도 맛있지만 기본으로 나오는 '우럭미역국'이 진국.",
+            baby: "아이를 위한 단품 메뉴는 없으나, 물회를 시키면 엄청나게 진한 우럭 미역국이 나와 아기 밥 말아 먹이기에 완벽합니다.",
+            distance: "씨마크에서 차로 15분 (사천항)",
+            time: "09:00~18:00 (월요일 휴무)",
+            phone: "033-644-1136",
+            rating: "네이버 4.3 / 카카오 3.7",
+            menu: "가자미물회 (18,000원)",
+            tip: "재료 소진 시 조기 마감되므로, 안전하게 점심 시간대(오후 1~2시 전)에 방문하세요."
+        },
+        "r_yt_2": {
+            title: "버드나무 브루어리",
+            desc: "강릉의 색을 담은 수제 맥주와 맛있는 피자. 펍 스타일 양조장.",
+            baby: "하이체어가 있고 넓은 편이나, 술집 특성상 저녁보다는 낮 시간에 방문하는 것이 아기와 함께하기 덜 복잡합니다.",
+            distance: "씨마크에서 차로 20분",
+            time: "12:00~23:00",
+            phone: "033-939-9999",
+            rating: "네이버 4.4 / 카카오 4.2",
+            menu: "미노리 세션 (수제맥주), 송고버섯 피자",
+            tip: "책 구매 시 맥주 1잔을 주는 이벤트가 종종 있습니다."
+        },
+        "r_yt_3": {
+            title: "옛카나리아",
+            desc: "어마어마한 양과 매콤한 양념의 대구머리찜 단일 메뉴 웨이팅 맛집.",
+            baby: "아기의자는 따로 없고 좌식 방이 있습니다. 메뉴가 오직 '매운 찜' 뿐이라 아기 먹일 음식(김, 후리가케 등)을 반드시 지참하세요.",
+            distance: "씨마크에서 차로 25분 (성산면)",
+            time: "10:30~20:30 (화요일 휴무)",
+            phone: "033-641-9502",
+            rating: "네이버 4.3 / 카카오 4.0",
+            menu: "대구머리찜 (소 30,000원)",
+            tip: "현지인 어르신들이 꽉 차는 진짜 노포입니다. 주차는 인근 성산 파출소 앞 공터 이용."
+        },
+        "r_yt_4": {
+            title: "엄지네포장마차",
+            desc: "전국에 꼬막비빔밥 열풍을 일으킨 원조집.",
+            baby: "하이체어는 없으며 항상 사람이 붐빕니다. 아기가 있다면 매장 식사보다 '포장(테이크아웃)'을 강력히 추천합니다.",
+            distance: "씨마크에서 차로 15분",
+            time: "11:00~23:00",
+            phone: "033-642-0178",
+            rating: "네이버 4.4 / 카카오 3.9",
+            menu: "꼬막무침비빔밥 (35,000원)",
+            tip: "포장은 대기 없이 5분 안에 바로 받아 숙소에서 편하게 드실 수 있습니다."
+        },
+        "r_yt_5": {
+            title: "동화가든",
+            desc: "짬뽕순두부(짬순) 발상지. 불향 가득한 짬뽕 국물과 부드러운 순두부.",
+            baby: "하이체어 있음. 부모는 짬순을 먹고, 아기는 '초두부(하얀 순두부 백반)'를 시켜주면 완벽한 식사가 가능합니다.",
+            distance: "씨마크에서 차로 5분 (초당동)",
+            time: "07:00~19:00 (수요일 휴무)",
+            phone: "033-652-9885",
+            rating: "네이버 4.3 / 카카오 3.5",
+            menu: "원조짬순 (13,000원), 초두부 (11,000원)",
+            tip: "웨이팅이 강릉 최고 수준입니다. 테이블링 앱으로 원격 줄서기가 필수입니다."
+        },
+
+        // --- Cafes ---
+        "c_blog_1": {
+            title: "보헤미안 로스터즈 박이추",
+            desc: "대한민국 1세대 바리스타 박이추 명장의 핸드드립 커피를 맛볼 수 있는 곳.",
+            baby: "유모차 진입이 수월하며 아기의자가 있습니다. 매장이 차분해 부모님이 맛있는 커피로 힐링하기 좋습니다.",
+            distance: "씨마크에서 차로 20분 (사천해변 인근 본점)",
+            time: "09:00~18:00 (월 휴무)",
+            phone: "033-642-6688",
+            rating: "네이버 4.4 / 카카오 4.1",
+            menu: "파나마 게이샤, 비엔나 커피",
+            tip: "바다 뷰가 보이며, 대기실이 잘 되어 있어 기다리기 편합니다."
+        },
+        "c_blog_2": {
+            title: "그리우니",
+            desc: "초당순두부 마을에 위치한 고즈넉한 대형 한옥 카페.",
+            baby: "야외 툇마루 평상 자리가 있어 유모차를 세워두고 아기와 평상에 앉아 쉴 수 있어 매우 편리합니다.",
+            distance: "씨마크에서 차로 5분",
+            time: "10:00~21:30",
+            phone: "0507-1335-0105",
+            rating: "네이버 4.5 / 카카오 4.3",
+            menu: "순두부 커피, 다양한 구움과자",
+            tip: "초당순두부 마을에서 밥 먹고 걸어서 이동하기 좋은 완벽한 동선입니다."
+        },
+        "c_blog_3": {
+            title: "미르마르",
+            desc: "안목해변에서 가장 압도적인 통창 오션뷰와 탁 트인 루프탑을 자랑하는 곳.",
+            baby: "건물 내 엘리베이터가 설치되어 있어 디럭스 유모차도 전 층 이동이 수월합니다. (루프탑 제외)",
+            distance: "씨마크에서 차로 10분 (안목해변)",
+            time: "09:00~22:00",
+            phone: "033-653-3130",
+            rating: "네이버 4.4 / 카카오 3.8",
+            menu: "아메리카노, 몽블랑",
+            tip: "층마다 분위기가 다릅니다. 통창 앞 소파 자리가 명당입니다."
+        },
+        "c_blog_4": {
+            title: "카페오션스",
+            desc: "강문해변 앞 수제버거와 스페셜티 커피를 함께 즐길 수 있는 널찍한 감성 카페.",
+            baby: "대형 매장에 테이블 간격이 매우 넓어 유모차가 지나다니기 전혀 부담이 없습니다.",
+            distance: "씨마크에서 차로 2분 (강문해변)",
+            time: "10:00~21:00",
+            phone: "0507-1351-4114",
+            rating: "네이버 4.6 / 카카오 4.2",
+            menu: "오션스 버거, 오션스 라떼",
+            tip: "씨마크 호텔에서 걸어갈 수 있을 만큼 가까워 산책 겸 방문하기 좋습니다."
+        },
+        "c_blog_5": {
+            title: "사천진리카페",
+            desc: "사천해변의 한적하고 조용한 바다를 보며 힐링할 수 있는 따뜻한 톤의 카페.",
+            baby: "안목이나 강문해변에 비해 훨씬 조용하고 인적이 드물어, 소음에 민감한 아기와 물멍하기 좋습니다.",
+            distance: "씨마크에서 차로 15분 (사천해변)",
+            time: "10:00~19:00",
+            phone: "033-644-8025",
+            rating: "네이버 4.3 / 카카오 4.0",
+            menu: "흑임자 크림 라떼",
+            tip: "가게 앞 방파제와 빨간 등대가 멋진 사진 포인트입니다."
+        },
+        "c_insta_1": {
+            title: "카페 툇마루",
+            desc: "설명이 필요 없는 강릉 1티어 핫플. 쫀득한 흑임자 크림 라떼.",
+            baby: "노키즈존은 아니지만, 야외석 일부를 제외하고 대기가 매우 길어 아이가 지루해할 수 있습니다. 부모 1명이 대기하고 교대하는 방식을 추천.",
+            distance: "씨마크에서 차로 5분 (초당동)",
+            time: "11:00~21:00 (화요일 휴무)",
+            phone: "0507-1349-7175",
+            rating: "네이버 4.6 / 카카오 4.0",
+            menu: "툇마루 커피(흑임자) 6,000원",
+            tip: "테이크아웃도 똑같이 줄을 서야 합니다. 오픈 30분 전 도착을 추천합니다."
+        },
+        "c_insta_2": {
+            title: "엔드투앤드",
+            desc: "소나무 숲과 물이 흐르는 거대한 야외 정원을 가진 압도적인 스케일의 카페.",
+            baby: "내부의 에필로그 존은 노키즈존이지만, 넓은 야외 '프롤로그 존'은 예스키즈존이라 유모차 산책과 휴식이 가능합니다.",
+            distance: "씨마크에서 차로 5분",
+            time: "10:00~22:00",
+            phone: "0507-1491-7724",
+            rating: "네이버 4.5 / 카카오 4.1",
+            menu: "크로플, 시그니처 에이드",
+            tip: "야외 정원의 물가 앞 자리가 인스타에서 가장 유명한 포토존입니다."
+        },
+        "c_insta_3": {
+            title: "강냉이소쿠리",
+            desc: "외할머니 댁을 개조한 툇마루 감성. 달달한 옥수수 디저트.",
+            baby: "아기의자는 없으나 툇마루에 앉아 아기에게 강냉이 아이스크림(우유 베이스)을 조금씩 맛보여주기 좋습니다.",
+            distance: "씨마크에서 차로 5분 (도깨비촬영지 인근)",
+            time: "11:00~19:00",
+            phone: "0507-1423-옥수수",
+            rating: "네이버 4.5 / 카카오 4.2",
+            menu: "강냉이 아이스크림 (4,500원), 옥수수커피",
+            tip: "귀여운 패키지 덕분에 디저트를 들고 툇마루에서 찍는 샷이 유행입니다."
+        },
+        "c_insta_4": {
+            title: "스테이인터뷰",
+            desc: "정동진 바다와 기찻길이 한눈에 내려다보이는 오두막 포토존.",
+            baby: "계단이 좀 있어 유모차보다는 아기띠가 편합니다. 사진 찍는 것을 좋아하는 부모님께 강력 추천.",
+            distance: "씨마크에서 차로 30분 (정동진)",
+            time: "10:00~19:00",
+            phone: "033-644-0105",
+            rating: "네이버 4.4 / 카카오 4.0",
+            menu: "아인슈페너, 각종 마들렌",
+            tip: "숙박 시설(펜션)을 겸하고 있으며, 카페 이용객도 오두막 포토존 이용이 가능합니다."
+        },
+        "c_insta_5": {
+            title: "갤러리밥스",
+            desc: "초당옥수수커피(초당옥크라떼)의 원조. 달콤하고 고소한 옥수수 풍미.",
+            baby: "공간이 좁고 웨이팅이 빡세 유모차 반입이 힘듭니다. 근처 식당에서 밥을 먹고 보호자 한 명이 테이크아웃 해오는 것을 추천.",
+            distance: "씨마크에서 차로 5분",
+            time: "11:30~20:00 (목요일 휴무)",
+            phone: "0507-1365-1211",
+            rating: "네이버 4.5 / 카카오 4.1",
+            menu: "초당옥수수커피 (5,500원)",
+            tip: "툇마루에 버금가는 웨이팅. 옥수수 아이스크림은 아이들도 아주 좋아합니다."
+        },
+        "c_yt_1": {
+            title: "테라로사 커피공장 본점",
+            desc: "커피 공장에 온 듯한 웅장한 붉은 벽돌 건물. 강릉 여행 필수 코스.",
+            baby: "압도적으로 매장이 넓고 엘리베이터도 있어 디럭스 유모차를 끌고 다니기에 강릉에서 가장 쾌적한 카페 중 하나입니다.",
+            distance: "씨마크에서 차로 25분 (구정면)",
+            time: "09:00~21:00",
+            phone: "033-648-2760",
+            rating: "네이버 4.4 / 카카오 3.8",
+            menu: "오늘의 드립커피, 까눌레",
+            tip: "입장 시 번호표를 뽑고 대기해야 할 정도로 인기가 많으나 회전율은 빠릅니다."
+        },
+        "c_yt_2": {
+            title: "순두부 젤라또",
+            desc: "초당 순두부로 만든 이색 아이스크림. 쫀득하고 슴슴한 단맛.",
+            baby: "젤라또가 부드럽고 콩으로 만들어져, 돌이 지난 아기들도 1~2입 정도는 맛있게 맛볼 수 있는 자극 없는 디저트입니다.",
+            distance: "씨마크에서 차로 5분 (초당동 1호점, 안목 2호점)",
+            time: "10:00~20:00 (매장별 상이)",
+            phone: "033-653-8344",
+            rating: "네이버 4.3 / 카카오 3.9",
+            menu: "순두부 젤라또 (4,500원), 인절미 젤라또",
+            tip: "초당순두부 마을 내 식당에서 식사 후 후식 코스로 필수입니다."
+        },
+        "c_yt_3": {
+            title: "곳",
+            desc: "사천해변의 초대형 카페. 옥상에 있는 '천국의 계단' 조형물이 포인트.",
+            baby: "대형 엘리베이터가 구비되어 유모차로 1, 2, 3층 모두 이동 가능. 빵 종류가 뷔페 뺨치게 많습니다.",
+            distance: "씨마크에서 차로 15분 (사천진해변)",
+            time: "09:00~21:00",
+            phone: "033-646-4500",
+            rating: "네이버 4.5 / 카카오 4.2",
+            menu: "곳 라떼, 다양한 베이커리",
+            tip: "날씨가 맑은 날 루프탑 천국의 계단에서 꼭 가족 사진을 남기세요."
+        },
+        "c_yt_4": {
+            title: "346커피스토리",
+            desc: "강문해변 앞 3층 규모의 거대한 베이커리 카페. 수십 종의 빵과 엄청난 오션뷰.",
+            baby: "유모차 접근성이 훌륭하며 쇼파석이 넉넉해 어린 아기를 눕히거나 안고 있기 매우 편안합니다.",
+            distance: "씨마크에서 차로 2분 (강문해변)",
+            time: "08:30~22:30",
+            phone: "033-653-3460",
+            rating: "네이버 4.4 / 카카오 3.9",
+            menu: "스페셜티 아메리카노, 몽블랑",
+            tip: "야외 테라스에서 바로 모래사장으로 연결되어 바다 구경하기 좋습니다."
+        },
+        "c_yt_5": {
+            title: "초당커피정미소",
+            desc: "옛 정미소를 리모델링한 힙한 로컬 카페. 구수한 '누룽지 크림 라떼'.",
+            baby: "내부가 레트로한 소품들로 가득 차 있어 공간이 다소 좁고 유모차 진입은 불편합니다. 아기띠 추천.",
+            distance: "씨마크에서 차로 5분 (초당동)",
+            time: "10:00~20:00",
+            phone: "033-653-2345",
+            rating: "네이버 4.4 / 카카오 4.1",
+            menu: "정미소 크림라떼, 누룽지라떼",
+            tip: "초당순두부마을 외곽에 있어 밥 먹고 조용히 쉬기 좋은 곳입니다."
+        },
+
+        // --- Bakeries ---
+        "b_blog_1": {
+            title: "바로방",
+            desc: "야채빵, 단팥빵, 찹쌀도넛 등 레트로 끝판왕 옛날 빵집.",
+            baby: "시장 근처 테이크아웃 전용 매장입니다. 16개월 아기가 먹기엔 설탕이 많아 보호자들의 훌륭한 주전부리용입니다.",
+            distance: "씨마크에서 차로 20분 (강릉 시내)",
+            time: "10:30~소진 시 (일 휴무)",
+            phone: "033-646-4621",
+            rating: "네이버 4.4 / 카카오 3.8",
+            menu: "야채빵(2,000원), 찹쌀도넛",
+            tip: "빵 나오는 시간이 정해져 있고 늦게 가면 빵이 없습니다. 빵 나오는 시간(보통 11시경)에 맞춰 방문하세요."
+        },
+        "b_blog_2": {
+            title: "개두릅통밀빵",
+            desc: "강릉 특산물인 개두릅을 넣어 만든 건강한 하드 계열 빵.",
+            baby: "설탕/버터가 안 들어간 담백한 통밀/깜빠뉴 류는 아기들의 건강 간식이나 치발기 대용 빵으로 아주 훌륭합니다.",
+            distance: "씨마크에서 차로 20분",
+            time: "10:00~19:00",
+            phone: "0507-1335-5026",
+            rating: "네이버 4.6 / 카카오 4.4",
+            menu: "개두릅 깜빠뉴, 통밀빵",
+            tip: "자극적인 빵에 지친 분들께 오아시스 같은 곳. 비건 지향 빵집입니다."
+        },
+        "b_blog_3": {
+            title: "동해기정",
+            desc: "강릉 오면 박스째 사가는 발효 기정떡(술떡).",
+            baby: "소화가 잘 되고 폭신폭신하여 이가 별로 없는 16개월 아기도 오물오물 잘 먹는 최고의 간식입니다.",
+            distance: "씨마크에서 차로 15분 (교동)",
+            time: "09:00~18:30 (일요일 휴무)",
+            phone: "033-645-3328",
+            rating: "네이버 4.5 / 카카오 4.2",
+            menu: "한 판 기정떡, 커피기정",
+            tip: "예약 없이 가면 품절인 경우가 많습니다. 최소 하루 전 전화로 박스 예약을 꼭 하세요."
+        },
+        "b_blog_4": {
+            title: "손병욱베이커리",
+            desc: "시내에 위치한 터줏대감 빵집. 폭신한 카스텔라와 맘모스빵이 베스트셀러.",
+            baby: "우유와 함께 먹이면 사르르 녹는 카스텔라 빵이 있어 유아용 간식으로 좋습니다.",
+            distance: "씨마크에서 차로 20분 (강릉 시내)",
+            time: "09:00~22:00",
+            phone: "033-648-4228",
+            rating: "네이버 4.4 / 카카오 4.0",
+            menu: "시몬 카스텔라, 맘모스빵",
+            tip: "최근 프랜차이즈 빵집과 결이 다른, 90년대 감성의 크림과 빵을 맛볼 수 있습니다."
+        },
+        "b_blog_5": {
+            title: "싸전",
+            desc: "바로방과 쌍벽을 이루는 중앙시장 근처 도넛/꽈배기 노포 빵집.",
+            baby: "역시 부모님을 위한 길거리 간식! 아기는 겉에 설탕을 털어낸 꽈배기 속살을 조금 맛볼 수 있습니다.",
+            distance: "씨마크에서 차로 20분 (중앙시장 인근)",
+            time: "09:30~21:00 (수요일 휴무)",
+            phone: "033-642-9056",
+            rating: "네이버 4.3 / 카카오 3.7",
+            menu: "찹쌀도넛, 야채고로케",
+            tip: "바로방에 줄이 너무 길다면 싸전으로 오세요. 맛은 뒤처지지 않습니다."
+        },
+        "b_insta_1": {
+            title: "마카모예베이글",
+            desc: "초당두부를 넣은 쫀득한 베이글과 대파 크림치즈의 조합.",
+            baby: "플레인(두부) 베이글은 질기지 않고 쫀득해 아기들이 들고 뜯기 좋습니다. 크림치즈는 어른들 차지!",
+            distance: "씨마크에서 차로 10분",
+            time: "10:00~20:00 (화 휴무)",
+            phone: "0507-1367-9333",
+            rating: "네이버 4.6 / 카카오 4.4",
+            menu: "초당두부 베이글, 대파크림치즈",
+            tip: "외관이 힙해서 매장 앞 벤치에서 아기랑 사진 찍기 좋습니다."
+        },
+        "b_insta_2": {
+            title: "인솔트 베이커리",
+            desc: "다양한 토핑이 올라간 바삭하고 버터 풍미 터지는 소금빵 전문점.",
+            baby: "소금빵의 바닥면 버터 구워진 바삭한 부분은 기름지므로, 안쪽의 부드러운 빵결만 아기에게 양보하세요.",
+            distance: "씨마크에서 차로 15분 (교동택지)",
+            time: "11:00~19:00",
+            phone: "0507-1335-소금",
+            rating: "네이버 4.5 / 카카오 4.2",
+            menu: "기본 소금빵, 초코 소금빵",
+            tip: "늦은 오후면 거의 품절됩니다. 빵 나오는 시간 확인 필수."
+        },
+        "b_insta_3": {
+            title: "오프더월",
+            desc: "초당옥수수 타르트와 황치즈 디저트 등 예쁘고 진한 구움과자 천국.",
+            baby: "아주 진하고 달달한 디저트 위주라 아기보다는 육아 스트레스를 날릴 엄마 아빠의 당 충전용으로 완벽.",
+            distance: "씨마크에서 차로 20분 (중앙시장 근처)",
+            time: "12:00~19:00 (화, 수 휴무)",
+            phone: "0507-1422-5255",
+            rating: "네이버 4.6 / 카카오 4.3",
+            menu: "초당옥수수 타르트, 얼그레이 까눌레",
+            tip: "가게 내부가 아주 협소해 1~2팀씩 입장합니다. 포장 전문입니다."
+        },
+        "b_insta_4": {
+            title: "돌체테리아",
+            desc: "빵 반, 크림 반! 터질듯한 크림빵과 쫀득한 식빵(먹물치즈 등).",
+            baby: "자극적인 재료들이 듬뿍 들어가 아기가 먹기엔 부적합. 숙소에서 육퇴 후 맥주와 함께 즐길 어른용 간식.",
+            distance: "씨마크에서 차로 15분 (교동)",
+            time: "12:00~19:00 (월, 화 휴무)",
+            phone: "033-643-3567",
+            rating: "네이버 4.5 / 카카오 3.5",
+            menu: "먹물치즈식빵, 말차크림빵",
+            tip: "인스타 피케팅(픽업 예약)으로 유명합니다. 방문 당일 아침 인스타 예약 공지를 필독하세요."
+        },
+        "b_insta_5": {
+            title: "사임당인절미",
+            desc: "부드러운 카스텔라 가루가 듬뿍 묻은 인절미. 강릉 여행 기념 선물 1순위.",
+            baby: "떡은 목에 걸릴 위험이 있어 16개월 아기에겐 주지 마시고, 겉에 묻은 달콤한 카스텔라 가루만 살짝 맛보게 해주세요.",
+            distance: "씨마크에서 차로 20분 (중앙시장)",
+            time: "09:00~20:00",
+            phone: "033-645-0004",
+            rating: "네이버 4.5 / 카카오 4.3",
+            menu: "카스테라 인절미, 흑임자 인절미",
+            tip: "중앙시장 공영주차장 이용 시 무료 주차권을 제공하는지 확인하세요."
+        },
+        "b_yt_1": {
+            title: "만동제과",
+            desc: "마늘바게트계의 레전드. 겉은 바삭, 속은 마늘 버터 소스에 흠뻑.",
+            baby: "마늘향이 강하고 끈적하여 아기가 먹기는 어렵습니다. 완벽한 어른들을 위한 강릉 필수 빵.",
+            distance: "씨마크에서 차로 20분 (중앙시장 근처)",
+            time: "11:00~18:00 (소진 시 마감)",
+            phone: "033-642-4400",
+            rating: "네이버 4.5 / 카카오 4.0",
+            menu: "마늘바게트, 어니언베이글",
+            tip: "평일에도 오픈 전부터 줄이 깁니다. 근처 옥천 주차장 등을 이용하고 일행 중 한 명만 줄을 서세요."
+        },
+        "b_yt_2": {
+            title: "강릉빵다방",
+            desc: "인절미 콩고물이 폭탄처럼 묻어있고 안에는 팥과 크림이 가득한 원조.",
+            baby: "콩고물이 기도로 넘어가면 위험하므로 아기에게는 절대 급여 주의! 부모님이 조심히 드세요.",
+            distance: "씨마크에서 차로 15분 (포남동)",
+            time: "12:00~소진 시 (월, 화 휴무)",
+            phone: "033-642-8807",
+            rating: "네이버 4.4 / 카카오 3.7",
+            menu: "인절미 크림빵 (3,500원)",
+            tip: "오픈(12시) 전 11시 30분부터 대기줄이 형성됩니다. 일찍 가야 안전합니다."
+        },
+        "b_yt_3": {
+            title: "베이커리가루 (가루베이커리)",
+            desc: "우유 크림이 듬뿍 들어간 몽글몽글한 '원준이 엉덩이빵'이 유명.",
+            baby: "매장이 넓어 유모차 방문이 쾌적하며, 부드러운 우유 크림빵과 식빵 류는 아기가 먹기에도 좋습니다.",
+            distance: "씨마크에서 차로 15분 (교동 본점)",
+            time: "08:00~23:00",
+            phone: "033-647-7953",
+            rating: "네이버 4.5 / 카카오 4.1",
+            menu: "원준이엉덩이빵, 맘모스빵",
+            tip: "강릉 내 여러 지점이 있으며(입암, 교동), 늦게까지 영업하여 저녁에 들르기도 좋습니다."
+        },
+        "b_yt_4": {
+            title: "팡파미유",
+            desc: "강릉 중앙시장의 명물, 육쪽마늘빵. 크림치즈와 마늘향이 예술.",
+            baby: "시장 내 테이크아웃 전용입니다. 마늘향이 진해 아기보다는 보호자의 야식으로 최고입니다.",
+            distance: "씨마크에서 차로 20분 (중앙시장 안)",
+            time: "11:00~20:00 (수요일 휴무)",
+            phone: "033-653-3330",
+            rating: "네이버 4.4 / 카카오 3.8",
+            menu: "육쪽마늘빵",
+            tip: "식은 뒤 먹어도 맛있지만, 에어프라이어나 전자레인지에 살짝 데우면 크림치즈가 녹아 훨씬 맛있습니다."
+        },
+        "b_yt_5": {
+            title: "빵아저씨",
+            desc: "현지인들이 숨겨놓고 먹는다는 두툼한 버터와 팥이 꽉 찬 앙버터 맛집.",
+            baby: "바게트가 다소 질길 수 있어 아기에게는 속에 있는 달콤한 팥만 조금 파서 주는 것을 추천합니다.",
+            distance: "씨마크에서 차로 15분 (포남동)",
+            time: "10:00~20:00 (일요일 휴무)",
+            phone: "033-653-1253",
+            rating: "네이버 4.5 / 카카오 4.3",
+            menu: "앙버터, 치아바타",
+            tip: "가성비가 엄청납니다. 동네 골목에 있으니 주차 시 요령껏 정차해야 합니다."
+        }
+    };
+
+    const modal = document.getElementById('modalOverlay');
+    const cards = document.querySelectorAll('.place-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.getAttribute('data-id');
+            const data = placesData[id];
+            
+            if(data) {
+                document.getElementById('mTitle').innerText = data.title;
+                document.getElementById('mDesc').innerText = data.desc;
+                document.getElementById('mBaby').innerHTML = `🍼 <b>영아 동반 팁:</b> ${data.baby}`;
+                document.getElementById('mDistance').innerHTML = `🚗 <b>이동 거리:</b> ${data.distance}`;
+                document.getElementById('mTime').innerHTML = `⏱ <b>운영 시간:</b> ${data.time}`;
+                document.getElementById('mPhone').innerHTML = `📞 <b>전화 번호:</b> ${data.phone}`;
+                document.getElementById('mRating').innerHTML = `🌟 <b>평점:</b> ${data.rating}`;
+                document.getElementById('mMenu').innerHTML = `🍽 <b>대표 메뉴:</b> ${data.menu}`;
+                document.getElementById('mTip').innerHTML = `💡 <b>방문 꿀팁:</b> ${data.tip}`;
+                
+                modal.classList.add('active');
+            }
+        });
+    });
+
+    function closeModal() {
+        modal.classList.remove('active');
+    }
+
+    // Close when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
