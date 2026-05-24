@@ -3,582 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강릉 1박 2일 — 씨마크 호텔에서 시작하는 아기랑 첫 바다 여행</title>
+    <title>강릉 핫플 & 힙플 완벽 정복 (봄~여름 에디션)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap');
 
-        :root {
-            --primary-color: #F4EBE1; /* Beige */
-            --secondary-color: #E8F0E4; /* Light Green */
-            --accent-color: #DDAF94; /* Warm Coral/Brown */
-            --text-main: #333333;
-            --text-muted: #666666;
-            --white: #FFFFFF;
-            --card-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #FAFAFA;
-            color: var(--text-main);
-            line-height: 1.6;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        /* Navigation */
-        nav {
-            background-color: var(--white);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-right: 20px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        nav a:hover {
-            color: var(--accent-color);
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            /* 산뜻한 봄-여름 바다와 풀잎 느낌의 애니메이션 그라디언트 배경 */
+            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
-        /* Header / Cover */
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding: 60px 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            color: var(--text-main);
-        }
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-top: 15px;
-        }
-        .legend {
-            background: var(--white);
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 20px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            box-shadow: var(--card-shadow);
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Container */
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* Section Titles */
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        header.glass-panel {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #1e272e;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #485460;
+            font-weight: 400;
+        }
+
         h2 {
-            border-bottom: 3px solid var(--accent-color);
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-top: 50px;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1e272e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Checklist Styling */
+        .checklist-group {
             margin-bottom: 25px;
-            color: var(--text-main);
+        }
+        .checklist-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.6);
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .check-item input[type="checkbox"] {
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #575fcf;
+            border-radius: 6px;
+            margin-right: 15px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+            transition: 0.2s;
+        }
+        .check-item input[type="checkbox"]:checked {
+            background: #575fcf;
+            border-color: #575fcf;
+        }
+        .check-item input[type="checkbox"]:checked::after {
+            content: '✔';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+        .check-item span {
+            font-size: 1.1rem;
+            color: #485460;
+            transition: 0.2s;
+        }
+        .check-item input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #808e9b;
         }
 
-        h3 {
-            color: var(--text-main);
-            margin-top: 30px;
+        /* Badge Styles */
+        .platform-title {
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .badge.blog { background: #03c75a; } /* Naver Green */
+        .badge.insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .badge.yt { background: #FF0000; }
 
-        /* Cards */
-        .card-grid {
+        /* Card Grid */
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--card-shadow);
-            border-top: 5px solid var(--secondary-color);
-            transition: transform 0.2s ease;
+
+        .place-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            padding: 25px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
         }
-        .card:hover {
-            transform: translateY(-3px);
+
+        .place-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
-        .card h4 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-            color: var(--accent-color);
+
+        .place-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e272e;
+            margin-bottom: 5px;
         }
-        .card p {
-            margin: 8px 0;
+
+        .place-desc {
             font-size: 0.95rem;
+            color: #485460;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
-        .badge {
-            background-color: var(--primary-color);
-            padding: 3px 8px;
-            border-radius: 5px;
+
+        .tag-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.5);
+            color: #3c40c6;
             font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .card a {
-            color: #2b70c9;
-            text-decoration: none;
-            word-break: break-all;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(60, 64, 198, 0.2);
         }
 
-        /* Schedule */
-        .timeline {
-            border-left: 3px solid var(--secondary-color);
-            padding-left: 20px;
-            margin-left: 10px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-color);
-        }
-        .time {
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        /* Budget Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            box-shadow: var(--card-shadow);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #EEEEEE;
-        }
-        th {
-            background-color: var(--primary-color);
-            font-weight: bold;
-        }
-        .total-row {
-            font-weight: bold;
-            background-color: var(--secondary-color);
-        }
-
-        /* Tips Section */
-        .tip-box {
-            background: var(--white);
-            border-left: 5px solid var(--accent-color);
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--card-shadow);
-        }
-        .tip-box h4 {
-            margin: 0 0 10px 0;
-        }
-
-        @media print {
-            nav { display: none; }
-            .container { padding: 0; }
-            body { background: white; }
-            .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .glass-panel { padding: 25px; }
+            h1 { font-size: 2.2rem; }
+            .grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#overview">개요</a>
-        <a href="#schedule">일정표</a>
-        <a href="#hotel">씨마크 호텔</a>
-        <a href="#food">맛집</a>
-        <a href="#cafe">카페</a>
-        <a href="#bakery">빵집</a>
-        <a href="#tour">관광지</a>
-        <a href="#tips">여행 꿀팁</a>
-        <a href="#budget">예산</a>
-    </nav>
-
-    <header id="overview">
-        <h1>강릉 1박 2일</h1>
-        <p>씨마크 호텔에서 시작하는 16개월 아기랑 첫 바다 여행 🌊</p>
-        <div class="legend">
-            <strong>가이드 보는 법</strong><br>
-            🍼 아기 친화 | ⏱ 운영시간 | 🚗 이동거리(씨마크 기준) | ⭐ 평점
-        </div>
+<div class="container">
+    <header class="glass-panel">
+        <h1>Gangneung Hotplace Guide</h1>
+        <p>어디갈지 고민은 그만! 강릉에서 가장 핫한 맛집/카페/빵집 총 45곳 완벽 큐레이션 🌊</p>
     </header>
 
-    <div class="container">
+    <!-- Checklist Section -->
+    <section class="glass-panel">
+        <h2>👶 아기랑 여행 필수 짐싸기 체크리스트</h2>
+        <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            
+            <div class="checklist-group">
+                <div class="checklist-title">🍱 먹거리 & 식기</div>
+                <label class="check-item"><input type="checkbox"><span>실온 이유식 / 햇반</span></label>
+                <label class="check-item"><input type="checkbox"><span>아기 김, 후리가케</span></label>
+                <label class="check-item"><input type="checkbox"><span>간식 (떡뻥, 퓨레, 과일)</span></label>
+                <label class="check-item"><input type="checkbox"><span>멸균 우유 & 보리차</span></label>
+                <label class="check-item"><input type="checkbox"><span>휴대용 턱받이, 스푼/포크</span></label>
+                <label class="check-item"><input type="checkbox"><span>아기 주방세제(소분), 수세미</span></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-title">🛁 위생 & 목욕</div>
+                <label class="check-item"><input type="checkbox"><span>기저귀 (1박 기준 15개 이상)</span></label>
+                <label class="check-item"><input type="checkbox"><span>휴대용 물티슈 (대용량 1, 휴대 2)</span></label>
+                <label class="check-item"><input type="checkbox"><span>탑투토워시 / 로션 / 수딩젤</span></label>
+                <label class="check-item"><input type="checkbox"><span>아기 칫솔 / 무불소 치약</span></label>
+                <label class="check-item"><input type="checkbox"><span>아기 면봉 / 손톱깎이</span></label>
+                <label class="check-item"><input type="checkbox"><span>휴대용 방수요</span></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-title">👕 의류 & 외출</div>
+                <label class="check-item"><input type="checkbox"><span>여벌 옷 (하루 3세트 여유)</span></label>
+                <label class="check-item"><input type="checkbox"><span>내복 (잠옷용) / 양말</span></label>
+                <label class="check-item"><input type="checkbox"><span>바람막이 (강릉 바닷바람 필수)</span></label>
+                <label class="check-item"><input type="checkbox"><span>햇빛 차단 모자 / 선크림</span></label>
+                <label class="check-item"><input type="checkbox"><span>가제 손수건 (10장)</span></label>
+                <label class="check-item"><input type="checkbox"><span>휴대용 유모차 & 아기띠</span></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-title">💊 건강 & 놀이</div>
+                <label class="check-item"><input type="checkbox"><span>해열제 (아세트아미노펜/이부프로펜)</span></label>
+                <label class="check-item"><input type="checkbox"><span>체온계 (필수)</span></label>
+                <label class="check-item"><input type="checkbox"><span>비상연고 / 밴드</span></label>
+                <label class="check-item"><input type="checkbox"><span>모기 기피제 / 버물리</span></label>
+                <label class="check-item"><input type="checkbox"><span>카시트용 장난감 / 사운드북</span></label>
+                <label class="check-item"><input type="checkbox"><span>애착 인형 / 쪽쪽이</span></label>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 1. Restaurants -->
+    <section class="glass-panel">
+        <h2>🍽 찐 맛집 컬렉션 (15곳)</h2>
         
-        <section id="schedule">
-            <h2>📅 DAY 1 / DAY 2 일정표</h2>
-            <p>16개월 아기의 컨디션(낮잠 12~14시, 수유 타이밍)을 고려한 여유로운 동선입니다.</p>
-            
-            <h3>DAY 1: 체크인과 힐링</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="time">11:00</span> - 강릉 도착 및 이른 점심 식사 (차현희순두부청국장)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">12:30</span> - 카페 및 산책 (허스크밀 / 카페 이용 후 아기 낮잠 유도)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">14:00</span> - 씨마크 호텔 도착, 짐 보관 및 로비 휴식 (낮잠 연장)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">15:00</span> - 호텔 체크인 및 아기 어메니티 세팅, 방에서 휴식
-                </div>
-                <div class="timeline-item">
-                    <span class="time">16:30</span> - 경포해변 데크길 산책 (유아차 이용)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">18:00</span> - 저녁 식사 (갓포 츠키요와 - 아기 메뉴 완비)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">20:00</span> - 호텔 복귀, 목욕 및 아기 취침 준비
-                </div>
+        <h3 class="platform-title"><span class="badge blog">BLOG</span> 네이버 현지인 추천 노포 & 찐맛집</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">강릉현대장칼국수</div>
+                <div class="place-desc">백종원도 극찬한 얼큰한 고추장 베이스의 장칼국수 3대 맛집. 해장으로 최고.</div>
+                <div class="tag-wrap"><span class="tag">#장칼국수</span><span class="tag">#얼큰해장</span></div>
             </div>
+            <div class="place-card">
+                <div class="place-title">9남매두부집</div>
+                <div class="place-desc">관광객보다 동네 주민이 더 찾는 곳. 자극적이지 않고 깔끔한 순두부전골.</div>
+                <div class="tag-wrap"><span class="tag">#순두부</span><span class="tag">#현지인맛집</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">해미가</div>
+                <div class="place-desc">물회를 시키면 수육과 미역국, 파전까지 나오는 미친 가성비의 광어물회 전문점.</div>
+                <div class="tag-wrap"><span class="tag">#광어물회</span><span class="tag">#가성비끝판왕</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">정화식당</div>
+                <div class="place-desc">20년 전통. 매콤달콤한 오징어볶음과 갈치조림이 기가 막힌 밥도둑 백반집.</div>
+                <div class="tag-wrap"><span class="tag">#오징어볶음</span><span class="tag">#노포백반</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">연곡쿵쿵소</div>
+                <div class="place-desc">아는 사람만 가는 한우 숯불구이 맛집. 질 좋은 소고기를 합리적인 가격에.</div>
+                <div class="tag-wrap"><span class="tag">#한우구이</span><span class="tag">#로컬고기집</span></div>
+            </div>
+        </div>
 
-            <h3>DAY 2: 바다와 커피의 여유</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="time">08:00</span> - 호텔 조식 (하이체어 이용, 아기 식사 해결)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">10:00</span> - 호텔 부대시설(실내 수영장 등) 이용 또는 해변 아침 산책
-                </div>
-                <div class="timeline-item">
-                    <span class="time">11:30</span> - 호텔 체크아웃
-                </div>
-                <div class="timeline-item">
-                    <span class="time">12:00</span> - 점심 식사 (고향마을 생선구이) 및 아기 낮잠 시작
-                </div>
-                <div class="timeline-item">
-                    <span class="time">13:30</span> - 대형 베이커리 카페 휴식 (테라로사 사천점 - 유아차 진입 용이)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">15:30</span> - 아쿠아리움 실내 관람 또는 귀가 전 빵 포장 (베이커리가루)
-                </div>
-                <div class="timeline-item">
-                    <span class="time">17:00</span> - 이른 저녁 후 서울로 출발
-                </div>
+        <h3 class="platform-title"><span class="badge insta">INSTA</span> 힙하고 예쁜 핫플레이스</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">강릉육미</div>
+                <div class="place-desc">넓고 쾌적한 공간에서 굽는 의성마늘 양념소갈비. 깔끔한 인테리어가 돋보임.</div>
+                <div class="tag-wrap"><span class="tag">#양념소갈비</span><span class="tag">#모임추천</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">세레니타</div>
+                <div class="place-desc">푸른 잔디 정원이 아름다운 이탈리안 다이닝. 분위기와 맛을 모두 잡은 곳.</div>
+                <div class="tag-wrap"><span class="tag">#정원레스토랑</span><span class="tag">#파스타</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">피터콤마안목가게</div>
+                <div class="place-desc">하와이안 펍 느낌의 이국적인 인테리어에서 즐기는 육즙 가득 수제버거.</div>
+                <div class="tag-wrap"><span class="tag">#수제버거</span><span class="tag">#안목해변</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">미트컬쳐</div>
+                <div class="place-desc">강릉에서 만나는 수준 높은 유러피안 다이닝. 헤링(청어) 요리와 스테이크가 일품.</div>
+                <div class="tag-wrap"><span class="tag">#미러피안다이닝</span><span class="tag">#예약필수</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">메시56</div>
+                <div class="place-desc">고즈넉한 일본풍 외관과 정갈하게 나오는 프리미엄 카이센동(해산물 덮밥) 전문점.</div>
+                <div class="tag-wrap"><span class="tag">#카이센동</span><span class="tag">#일식당</span></div>
+            </div>
+        </div>
 
-        <section id="hotel">
-            <h2>🏨 숙소 정보: 씨마크 호텔</h2>
-            <div class="card">
-                <h4>씨마크 호텔 (SEAMARQ)</h4>
-                <p>📍 강원 강릉시 해안로 406 (강문동)</p>
-                <p><strong>🍼 아기 동반 어메니티 (사전 예약 필수):</strong> 베이비 코트, 젖병 소독기, 침대 가드, 아기 욕조, 디럭스 유모차, 공기청정기. 수량이 한정되어 있어 객실 예약 즉시 프런트로 전화 요청 필수.</p>
-                <p><strong>🏊 수영장:</strong> 실내/외 수영장 모두 유아용 구명조끼 대여 가능. 아기용 목튜브 등은 개별 지참.</p>
-                <p><strong>편의시설:</strong> 이유식 데우기는 룸서비스 또는 프런트에 요청 시 전자레인지 이용 가능. 주변 편의점 도보 가능.</p>
-                <p><strong>💡 예약 꿀팁:</strong> 공식 홈페이지의 패키지를 이용하면 조식/수영장이 포함되어 가성비가 좋습니다.</p>
-                <p>📎 <a href="https://www.seamarqhotel.com/" target="_blank">공식 홈페이지 링크</a></p>
+        <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 또간집 & 쯔양 검증 맛집</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">장안횟집</div>
+                <div class="place-desc">또간집 강릉편 1등! 가자미 물회도 맛있지만 기본으로 나오는 '우럭미역국'이 미친 맛.</div>
+                <div class="tag-wrap"><span class="tag">#또간집1등</span><span class="tag">#물회</span><span class="tag">#우럭미역국</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">버드나무 브루어리</div>
+                <div class="place-desc">알쓸신잡 등 다수 방송 출연. 강릉의 색을 담은 수제 맥주와 맛있는 피자.</div>
+                <div class="tag-wrap"><span class="tag">#수제맥주</span><span class="tag">#양조장</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">옛카나리아</div>
+                <div class="place-desc">어마어마한 양과 매콤한 양념의 대구머리찜 단일 메뉴로 승부하는 웨이팅 맛집.</div>
+                <div class="tag-wrap"><span class="tag">#대구머리찜</span><span class="tag">#매콤달콤</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">엄지네포장마차</div>
+                <div class="place-desc">전국에 꼬막비빔밥 열풍을 일으킨 원조집. 들기름 고소한 꼬막과 육사시미 조합 필수.</div>
+                <div class="tag-wrap"><span class="tag">#꼬막비빔밥</span><span class="tag">#육사시미</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">동화가든</div>
+                <div class="place-desc">짬뽕순두부(원조 짬순)의 발상지. 불향 가득한 짬뽕 국물과 부드러운 순두부의 조화.</div>
+                <div class="tag-wrap"><span class="tag">#짬뽕순두부</span><span class="tag">#웨이팅극악</span></div>
+            </div>
+        </div>
+    </section>
 
-        <section id="food">
-            <h2>🍽 맛집 리스트 (최소 8곳)</h2>
-            
-            <h3>☀️ 점심 추천 (3곳)</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 차현희순두부청국장</h4>
-                    <p class="badge">점심 추천</p>
-                    <p>📝 자극적이지 않고 냄새 안나는 청국장과 순두부로 유명한 강릉 대표 맛집</p>
-                    <p>🍼 <strong>영아 추천:</strong> 하이체어 구비, 넓은 매장, 하얀 순두부와 생선구이 반찬이 나와 아기 밥 먹이기 최적</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 5분</p>
-                    <p>⏱ <strong>운영:</strong> 매일 07:30~20:00 (목요일 휴무)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.3 / 5.0 (리뷰 약 10,000건+)</p>
-                    <p>🟡 <strong>카카오맵 평점:</strong> 3.6 / 5.0 (리뷰 700건+)</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 순두부전골 정식(19,000원), 청국장 정식(19,000원)</p>
-                    <p>💡 주말 점심 웨이팅 있음. 캐치테이블 원격 줄서기 활용 추천.</p>
-                </div>
-                <div class="card">
-                    <h4>📍 소도리 (주문진)</h4>
-                    <p class="badge">점심 추천</p>
-                    <p>📝 구옥을 개조한 아늑하고 따뜻한 집밥 느낌의 한식당</p>
-                    <p>🍼 <strong>영아 추천:</strong> 하이체어 구비, 간이 세지 않은 반찬으로 아이 먹이기 좋음</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 20분</p>
-                    <p>⏱ <strong>운영:</strong> 11:30~17:00 (일요일 휴무 / 라스트오더 16:30)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.5 / 5.0 (리뷰 약 1,500건)</p>
-                    <p>🟡 <strong>카카오맵 평점:</strong> 4.1 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 돼지불고기(15,000원), 시래기 된장 뚝배기(9,000원)</p>
-                    <p>💡 재료 소진 시 일찍 닫으므로 방문 전 전화 확인 필수.</p>
-                </div>
-                <div class="card">
-                    <h4>📍 고향마을</h4>
-                    <p class="badge">점심 추천</p>
-                    <p>📝 강릉 현지인들이 자주 찾는 깔끔한 생선구이 전문점</p>
-                    <p>🍼 <strong>영아 추천:</strong> 하이체어 보유, 담백한 생선 살은 16개월 아기의 훌륭한 반찬</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 10분</p>
-                    <p>⏱ <strong>운영:</strong> 09:00~20:00 (수요일 휴무 확인 필요)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.4 / 5.0</p>
-                    <p>🟡 <strong>카카오맵 평점:</strong> 4.0 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 모둠 생선구이 정식(1인 18,000원)</p>
-                </div>
+    <!-- 2. Cafes -->
+    <section class="glass-panel">
+        <h2>☕ 무조건 가야 할 카페 컬렉션 (15곳)</h2>
+        
+        <h3 class="platform-title"><span class="badge blog">BLOG</span> 여유로운 오션뷰 & 감성 카페</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">보헤미안 로스터즈 박이추</div>
+                <div class="place-desc">대한민국 1세대 바리스타 박이추 명장의 핸드드립 커피를 맛볼 수 있는 커피 성지.</div>
+                <div class="tag-wrap"><span class="tag">#핸드드립</span><span class="tag">#커피명장</span></div>
             </div>
+            <div class="place-card">
+                <div class="place-title">그리우니</div>
+                <div class="place-desc">초당순두부 마을에 위치한 고즈넉한 대형 한옥 카페. 순두부 라떼가 시그니처.</div>
+                <div class="tag-wrap"><span class="tag">#한옥카페</span><span class="tag">#초당순두부마을</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">미르마르</div>
+                <div class="place-desc">안목해변에서 가장 압도적인 통창 오션뷰와 탁 트인 루프탑을 자랑하는 곳.</div>
+                <div class="tag-wrap"><span class="tag">#안목해변</span><span class="tag">#통창오션뷰</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">카페오션스</div>
+                <div class="place-desc">강문해변 앞 수제버거와 스페셜티 커피를 함께 즐길 수 있는 널찍한 감성 카페.</div>
+                <div class="tag-wrap"><span class="tag">#강문해변</span><span class="tag">#수제버거</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">사천진리카페</div>
+                <div class="place-desc">사천해변의 한적하고 조용한 바다를 보며 힐링할 수 있는 따뜻한 톤의 카페.</div>
+                <div class="tag-wrap"><span class="tag">#사천해변</span><span class="tag">#물멍</span></div>
+            </div>
+        </div>
 
-            <h3>🌙 저녁 추천 (2곳)</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 강릉육미 (교동택지)</h4>
-                    <p class="badge">저녁 추천</p>
-                    <p>📝 넓고 쾌적한 실내에서 즐기는 의성마늘 양념소갈비 맛집</p>
-                    <p>🍼 <strong>영아 추천:</strong> 튼튼한 하이체어 다수 구비, 매장이 넓어 유모차 반입 수월, 부드러운 소고기</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 15분</p>
-                    <p>⏱ <strong>운영:</strong> 16:00~23:00</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.7 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 의성마늘양념소갈비(22,000원)</p>
-                    <p>💡 교동택지 공영주차장 이용 편리.</p>
-                </div>
-                <div class="card">
-                    <h4>📍 세레니타</h4>
-                    <p class="badge">저녁/양식 추천</p>
-                    <p>📝 넓은 정원이 있어 분위기 내기 좋은 레스토랑</p>
-                    <p>🍼 <strong>영아 추천:</strong> 하이체어, 아기 식기 구비, 잔디밭에서 아기가 잠시 걷기 좋음</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 10분</p>
-                    <p>⏱ <strong>운영:</strong> 11:30~21:00 (브레이크타임 15:00~17:00, 월요일 휴무)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.6 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 안심 스테이크, 까르보나라</p>
-                    <p>💡 기념일 등 가족 식사로 강력 추천.</p>
-                </div>
+        <h3 class="platform-title"><span class="badge insta">INSTA</span> 셔터만 눌러도 인생샷 포토존</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">카페 툇마루</div>
+                <div class="place-desc">설명이 필요 없는 강릉 1티어 핫플. 쫀득한 흑임자 크림 라떼 한 잔을 위해 전국에서 몰림.</div>
+                <div class="tag-wrap"><span class="tag">#흑임자라떼</span><span class="tag">#극악웨이팅</span></div>
             </div>
+            <div class="place-card">
+                <div class="place-title">엔드투앤드</div>
+                <div class="place-desc">웅장한 소나무 숲과 물이 흐르는 거대한 야외 정원을 가진 압도적인 스케일의 카페.</div>
+                <div class="tag-wrap"><span class="tag">#대형정원</span><span class="tag">#소나무뷰</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">강냉이소쿠리</div>
+                <div class="place-desc">외할머니 댁을 개조한 툇마루 감성. 달달한 옥수수 커피와 강냉이 아이스크림이 꿀맛.</div>
+                <div class="tag-wrap"><span class="tag">#레트로감성</span><span class="tag">#옥수수커피</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">스테이인터뷰</div>
+                <div class="place-desc">정동진 바다와 기찻길이 한눈에 내려다보이는 오두막 포토존이 인스타를 도배한 곳.</div>
+                <div class="tag-wrap"><span class="tag">#오두막포토존</span><span class="tag">#정동진뷰</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">갤러리밥스</div>
+                <div class="place-desc">초당옥수수커피(초당옥크라떼)의 원조. 달콤하고 고소한 옥수수 풍미가 미쳤음.</div>
+                <div class="tag-wrap"><span class="tag">#초당옥수수커피</span><span class="tag">#테이크아웃추천</span></div>
+            </div>
+        </div>
 
-            <h3>🌊 해산물 / 로컬 및 간편 (3곳)</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 장안횟집 (사천항)</h4>
-                    <p class="badge">해산물</p>
-                    <p>📝 전국구 물회 맛집이자 미역국이 엄청나게 맛있는 곳</p>
-                    <p>🍼 <strong>영아 추천:</strong> 회를 못 먹는 아기에게 진한 '우럭 미역국'에 밥을 말아주기 아주 좋음</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 15분</p>
-                    <p>⏱ <strong>운영:</strong> 09:00~18:00 (월요일 휴무)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.3 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 가자미물회(18,000원), 우럭미역국(12,000원)</p>
-                </div>
-                <div class="card">
-                    <h4>📍 다이닝조개 강릉본점</h4>
-                    <p class="badge">해산물</p>
-                    <p>📝 바다에 왔으니 조개구이! 깔끔한 인테리어의 구이집</p>
-                    <p>🍼 <strong>영아 추천:</strong> 하이체어 구비, 구이 연기가 잘 빠짐 (단, 불 주의)</p>
-                    <p>🚗 <strong>이동:</strong> 호텔에서 차로 약 3분 (강문해변 앞)</p>
-                    <p>⏱ <strong>운영:</strong> 12:00~24:00</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.5 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 모둠 조개구이</p>
-                </div>
-                <div class="card">
-                    <h4>📍 갓포 츠키요와</h4>
-                    <p class="badge">키즈/간편</p>
-                    <p>📝 신라모노그램 인근 깔끔한 일식당</p>
-                    <p>🍼 <strong>영아 추천:</strong> 어린이 전용 '키즈 메뉴(함박카츠)' 존재, 하이체어 완비</p>
-                    <p>🚗 <strong>이동:</strong> 차로 약 15분</p>
-                    <p>⏱ <strong>운영:</strong> 11:30~22:00</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.8 / 5.0</p>
-                    <p>🍽 <strong>인기 메뉴:</strong> 어린이 함박카츠 정식, 각종 덮밥류</p>
-                </div>
+        <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 조회수 터진 초대형 & 뷰맛집</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">테라로사 커피공장 본점</div>
+                <div class="place-desc">커피 공장에 온 듯한 웅장한 붉은 벽돌 건물. 강릉 여행 필수 코스로 꼽히는 로스터리.</div>
+                <div class="tag-wrap"><span class="tag">#커피성지</span><span class="tag">#거대규모</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">순두부 젤라또</div>
+                <div class="place-desc">초당 순두부로 만든 이색 아이스크림. 쫀득하고 슴슴한 단맛에 유튜브 먹방 단골.</div>
+                <div class="tag-wrap"><span class="tag">#젤라또</span><span class="tag">#순두부디저트</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">곳</div>
+                <div class="place-desc">사천해변의 초대형 카페. 옥상에 있는 '천국의 계단' 조형물에서 인증샷은 필수.</div>
+                <div class="tag-wrap"><span class="tag">#천국의계단</span><span class="tag">#사천대형카페</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">346커피스토리</div>
+                <div class="place-desc">강문해변 앞 3층 규모의 거대한 베이커리 카페. 수십 종의 빵과 엄청난 오션뷰.</div>
+                <div class="tag-wrap"><span class="tag">#베이커리카페</span><span class="tag">#강문해변뷰</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">초당커피정미소</div>
+                <div class="place-desc">옛 정미소를 힙하게 리모델링. 구수한 '누룽지 크림 라떼'가 독특해서 영상에 자주 나옴.</div>
+                <div class="tag-wrap"><span class="tag">#빈티지카페</span><span class="tag">#누룽지라떼</span></div>
+            </div>
+        </div>
+    </section>
 
-        <section id="cafe">
-            <h2>☕ 카페 리스트 (최소 5곳)</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 허스크밀</h4>
-                    <p>📝 웅장한 샹들리에와 예쁜 디저트가 있는 초대형 베이커리 카페</p>
-                    <p>🍼 <strong>아기 추천:</strong> 유아차 진입 완전 가능, 엘리베이터 있음, 아기의자 많음, 테이블 간격 넓음</p>
-                    <p>🚗 <strong>이동:</strong> 씨마크에서 차로 단 2분 (도보 가능거리)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.4 / 5.0</p>
-                    <p>💡 사진 찍기 좋은 대형 포토존 다수</p>
-                </div>
-                <div class="card">
-                    <h4>📍 갤러리밥스</h4>
-                    <p>📝 초당옥수수 커피(초당옥수수아이스크림)로 강릉을 평정한 곳</p>
-                    <p>🍼 <strong>아기 추천:</strong> 아기의자 있음. 유모차 반입은 공간 상 어려울 수 있어 아기띠 추천. 달콤한 옥수수 아이스크림은 아이도 좋아함.</p>
-                    <p>🚗 <strong>이동:</strong> 차로 5분</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.5 / 5.0</p>
-                    <p>💡 오픈런 필수, 웨이팅 심함 (부모 1명이 대기하고 아이는 차에서 대기 추천)</p>
-                </div>
-                <div class="card">
-                    <h4>📍 테라로사 경포호수점</h4>
-                    <p>📝 호수를 바라보는 고즈넉하고 멋진 서재 컨셉 카페</p>
-                    <p>🍼 <strong>아기 추천:</strong> 야외 데크석은 유모차 진입 가능. 조용한 편식 공간이라 영아 동반 시 테라스 석 강추.</p>
-                    <p>🚗 <strong>이동:</strong> 차로 5분</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.4 / 5.0</p>
-                </div>
-                <div class="card">
-                    <h4>📍 엔드투앤드 (End to End)</h4>
-                    <p>📝 엄청나게 넓은 소나무 정원이 있는 대형 카페</p>
-                    <p>🍼 <strong>아기 추천:</strong> 야외 정원은 노키즈존과 예스키즈존(프롤로그존)이 분리되어 있어 아기와 편하게 이용 가능. 유모차 산책 용이.</p>
-                    <p>🚗 <strong>이동:</strong> 차로 5분 (강문해변 인근)</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.5 / 5.0</p>
-                </div>
-                <div class="card">
-                    <h4>📍 보사노바 커피로스터스 안목본점</h4>
-                    <p>📝 안목해변 커피거리의 대표 오션뷰 카페</p>
-                    <p>🍼 <strong>아기 추천:</strong> 건물 내 엘리베이터가 있어 유모차로 전 층 이동 가능(아기 동반 시 매우 큰 장점), 좌식 테이블(다락방 느낌) 구비.</p>
-                    <p>🚗 <strong>이동:</strong> 차로 10분</p>
-                    <p>🌟 <strong>네이버 평점:</strong> 4.3 / 5.0</p>
-                </div>
+    <!-- 3. Bakeries -->
+    <section class="glass-panel">
+        <h2>🥐 눈과 입이 즐거운 빵지순례 (15곳)</h2>
+        
+        <h3 class="platform-title"><span class="badge blog">BLOG</span> 변함없는 로컬 & 추억의 빵집</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">바로방</div>
+                <div class="place-desc">백종원 3대천왕 출연. 야채빵, 단팥빵, 찹쌀도넛 등 레트로 끝판왕 옛날 빵집.</div>
+                <div class="tag-wrap"><span class="tag">#야채빵</span><span class="tag">#추억의도넛</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">개두릅통밀빵</div>
+                <div class="place-desc">강릉 특산물인 개두릅을 넣어 만든 건강한 하드 계열 빵. 소화가 잘 되는 현지인 픽.</div>
+                <div class="tag-wrap"><span class="tag">#건강빵</span><span class="tag">#비건옵션</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">동해기정</div>
+                <div class="place-desc">강릉 오면 박스째 사가는 발효 기정떡(술떡). 버터에 구워 먹으면 기절하는 맛.</div>
+                <div class="tag-wrap"><span class="tag">#기정떡</span><span class="tag">#선물용</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">손병욱베이커리</div>
+                <div class="place-desc">시내에 위치한 터줏대감 빵집. 폭신한 카스텔라와 맘모스빵이 베스트셀러.</div>
+                <div class="tag-wrap"><span class="tag">#옛날빵집</span><span class="tag">#동네맛집</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">싸전</div>
+                <div class="place-desc">바로방과 쌍벽을 이루는 중앙시장 근처 도넛/꽈배기 노포 빵집. 가성비 최고.</div>
+                <div class="tag-wrap"><span class="tag">#설탕꽈배기</span><span class="tag">#찹쌀도넛</span></div>
+            </div>
+        </div>
 
-        <section id="bakery">
-            <h2>🥐 빵집/베이커리 (최소 3곳)</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 테라로사 커피공장 본점 (베이커리)</h4>
-                    <p>🍼 <strong>아기 추천:</strong> 매장이 압도적으로 넓어 유모차 진입이 수월. 식빵, 치아바타 등 부드럽고 담백한 빵이 있어 16개월 아기 간식으로 훌륭함.</p>
-                    <p>💡 포장도 가능하며, 공간 자체가 관광지 느낌이라 시간 보내기 좋음.</p>
-                </div>
-                <div class="card">
-                    <h4>📍 베이커리가루 (입암점/교동점)</h4>
-                    <p>🍼 <strong>아기 추천:</strong> '원준이 엉덩이 빵'이 시그니처인데, 우유 크림이 들어있고 빵이 매우 부드러워 아이들도 잘 먹음.</p>
-                    <p>💡 건강한 재료를 사용하는 동네 대형 빵집 느낌으로 재고가 넉넉한 편.</p>
-                </div>
-                <div class="card">
-                    <h4>📍 손병욱베이커리</h4>
-                    <p>🍼 <strong>아기 추천:</strong> 옛날 스타일의 부드러운 카스텔라, 모닝빵 등 아이가 부담 없이 씹고 삼킬 수 있는 메뉴 다수 보유.</p>
-                    <p>💡 중앙시장 인근 위치, 포장 전문.</p>
-                </div>
+        <h3 class="platform-title"><span class="badge insta">INSTA</span> 미친 비주얼 디저트 핫플</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">마카모예베이글</div>
+                <div class="place-desc">초당두부를 넣은 쫀득한 베이글과 대파 크림치즈의 조합. 인스타 릴스 폭발.</div>
+                <div class="tag-wrap"><span class="tag">#두부베이글</span><span class="tag">#비주얼최고</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">인솔트 베이커리</div>
+                <div class="place-desc">다양한 토핑이 올라간 바삭하고 버터 풍미 터지는 소금빵 전문점.</div>
+                <div class="tag-wrap"><span class="tag">#소금빵맛집</span><span class="tag">#패키지예쁨</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">오프더월</div>
+                <div class="place-desc">초당옥수수 타르트와 황치즈 디저트 등 예쁘고 진한 구움과자 천국.</div>
+                <div class="tag-wrap"><span class="tag">#옥수수타르트</span><span class="tag">#구움과자</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">돌체테리아</div>
+                <div class="place-desc">빵 반, 크림 반! 터질듯한 크림빵과 쫀득한 식빵(먹물치즈 등)으로 오픈런 필수.</div>
+                <div class="tag-wrap"><span class="tag">#크림빵</span><span class="tag">#먹물치즈식빵</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">사임당인절미</div>
+                <div class="place-desc">부드러운 카스텔라 가루가 듬뿍 묻은 인절미. 강릉 여행 기념 선물용 1순위.</div>
+                <div class="tag-wrap"><span class="tag">#카스텔라인절미</span><span class="tag">#선물추천</span></div>
+            </div>
+        </div>
 
-        <section id="tour">
-            <h2>🏞 관광지/체험 (최소 5곳)</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>📍 경포해변 데크길</h4>
-                    <p>🍼 <strong>특징:</strong> 모래사장 진입은 유모차로 어렵지만, 소나무 숲을 따라 데크길이 길게 나 있어 바닷바람 맞으며 유모차 산책하기 완벽함.</p>
-                    <p>💵 무료 / 야외</p>
-                </div>
-                <div class="card">
-                    <h4>📍 허균·허난설헌 기념공원</h4>
-                    <p>🍼 <strong>특징:</strong> 흙길과 돌길이 섞여 있으나 대부분 평탄하여 유모차 이동 가능. 울창한 소나무 숲이라 햇빛을 가려주어 낮 시간에 걷기 매우 좋음.</p>
-                    <p>💵 무료 / 야외</p>
-                </div>
-                <div class="card">
-                    <h4>📍 경포 아쿠아리움</h4>
-                    <p>🍼 <strong>특징:</strong> 실내 시설로 우천 시 최고의 대안. 규모가 크진 않지만 16개월 아기의 시선을 끌기엔 충분. 엘리베이터 및 수유실 완비.</p>
-                    <p>💵 36개월 미만 무료입장 (증빙서류 지참) / 실내</p>
-                </div>
-                <div class="card">
-                    <h4>📍 강릉통일공원</h4>
-                    <p>🍼 <strong>특징:</strong> 주차장, 보행로 등에 단차가 없는 무장애 '열린 관광지'로 지정되어 유모차를 밀기 아주 편안함. 거대한 배(함정)를 구경할 수 있음.</p>
-                    <p>💵 입장료 유료 (영아 무료) / 야외</p>
-                </div>
-                <div class="card">
-                    <h4>📍 안목해변 커피거리 산책로</h4>
-                    <p>🍼 <strong>특징:</strong> 길가 전체가 평탄하게 포장되어 있어 유모차로 카페를 둘러보며 산책하기 좋음. 갓길 주차가 복잡하니 공영주차장 이용 권장.</p>
-                    <p>💵 무료 / 야외</p>
-                </div>
+        <h3 class="platform-title"><span class="badge yt">YOUTUBE</span> 빵튜버들이 쓸어가는 빵지순례</h3>
+        <div class="grid-container">
+            <div class="place-card">
+                <div class="place-title">만동제과</div>
+                <div class="place-desc">마늘바게트계의 레전드. 겉은 바삭하고 속은 달달한 마늘 버터 소스에 절여져 있음.</div>
+                <div class="tag-wrap"><span class="tag">#마늘바게트</span><span class="tag">#무조건포장</span></div>
             </div>
-        </section>
+            <div class="place-card">
+                <div class="place-title">강릉빵다방</div>
+                <div class="place-desc">인절미 콩고물이 폭탄처럼 묻어있고 안에는 크림이 가득한 '인절미크림빵'의 원조.</div>
+                <div class="tag-wrap"><span class="tag">#인절미크림빵</span><span class="tag">#오픈런</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">가루베이커리</div>
+                <div class="place-desc">우유 크림이 듬뿍 들어간 몽글몽글한 '원준이 엉덩이빵'이 유튜브 먹방 단골.</div>
+                <div class="tag-wrap"><span class="tag">#원준이엉덩이빵</span><span class="tag">#동네대형빵집</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">팡파미유</div>
+                <div class="place-desc">강릉 중앙시장의 명물, 육쪽마늘빵. 따뜻할 때 먹으면 크림치즈와 마늘향이 예술.</div>
+                <div class="tag-wrap"><span class="tag">#육쪽마늘빵</span><span class="tag">#중앙시장</span></div>
+            </div>
+            <div class="place-card">
+                <div class="place-title">빵아저씨</div>
+                <div class="place-desc">현지인들이 숨겨놓고 먹는다는 두툼한 버터와 팥이 꽉 찬 앙버터 맛집.</div>
+                <div class="tag-wrap"><span class="tag">#앙버터</span><span class="tag">#가성비갑</span></div>
+            </div>
+        </div>
+    </section>
 
-        <section id="tips">
-            <h2>💡 영아 동반 여행 꿀팁</h2>
-            
-            <div class="tip-box">
-                <h4>1. 짐 챙기기 (강릉 맞춤)</h4>
-                <p>기본 기저귀, 젖병 외에 강릉 바닷바람을 막아줄 <strong>얇은 바람막이</strong>와 <strong>모자</strong>, 자외선 차단제는 필수입니다. 숙소 내 난방이 건조할 수 있으니 휴대용 소형 가습기나 아기 보습 크림을 넉넉히 챙기세요.</p>
-            </div>
-            <div class="tip-box">
-                <h4>2. 차량 이동 중 아기 달래기</h4>
-                <p>서울-강릉 간 2.5시간 이동 시, 아기의 낮잠 시간에 맞춰 출발하는 것이 베스트입니다. 깨어있을 때를 대비해 스티커북, 사운드북, 그리고 평소 안 먹이던 비장의 무기(새로운 떡뻥, 주스 등)를 준비하세요. 휴게소는 횡성휴게소가 넓고 쾌적합니다.</p>
-            </div>
-            <div class="tip-box">
-                <h4>3. 수유 및 이유식 데우기</h4>
-                <p>일반 식당/카페엔 수유실이 잘 없습니다. <strong>보온병에 뜨거운 물</strong>을 담아 다니며 중탕하거나, 식당에 정중히 전자레인지 사용을 요청하세요. (이마트 강릉점, 홈플러스 등 대형마트 수유실을 비상 스팟으로 파악해두면 좋습니다.)</p>
-            </div>
-            <div class="tip-box">
-                <h4>4. 영아 응급상황 대비</h4>
-                <p>강릉 시내 <strong>강릉아산병원</strong>에 소아응급실이 운영되고 있습니다. (강릉시 사천면 방동길 38). 비상용 해열제(아세트아미노펜, 이부프로펜 두 종류)와 체온계는 반드시 휴대하세요.</p>
-            </div>
-            <div class="tip-box">
-                <h4>5. 사진 잘 찍는 법</h4>
-                <p>바다 배경 사진은 해가 머리 꼭대기에 있는 정오보다는, <strong>오전 10시 이전이나 오후 4시 이후</strong>의 빛이 부드러울 때 가장 예쁘게 나옵니다. 강문해변의 액자 포토존이 씨마크에서 가장 가깝습니다.</p>
-            </div>
-            <div class="tip-box">
-                <h4>6. 씨마크 호텔 200% 활용법</h4>
-                <p>체크인(15:00) 전이라도 도착 후 짐을 맡길 수 있습니다. 로비 통창 앞 소파가 인생샷 스팟이니 아기가 기분 좋을 때 미리 찍어두세요. 체크아웃 후에도 수영장 이용이 가능한 경우가 있으니 프런트에 문의해 보세요.</p>
-            </div>
-        </section>
+</div>
 
-        <section id="budget">
-            <h2>💰 실전 예산 계산기 (2인 + 16개월 영아 기준)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>항목</th>
-                        <th>예상 비용 (원)</th>
-                        <th>비고</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>숙박 (씨마크 호텔 1박)</td>
-                        <td>약 450,000 ~ 600,000</td>
-                        <td>패키지 유무, 평일/주말 차이</td>
-                    </tr>
-                    <tr>
-                        <td>식비 (3식 × 2일)</td>
-                        <td>약 150,000</td>
-                        <td>순두부, 생선구이, 저녁(고기/회)</td>
-                    </tr>
-                    <tr>
-                        <td>카페 & 빵집 (간식)</td>
-                        <td>약 50,000</td>
-                        <td>커피 4잔, 빵 다수</td>
-                    </tr>
-                    <tr>
-                        <td>관광지 입장료</td>
-                        <td>약 20,000</td>
-                        <td>아쿠아리움 성인 2인 (아기 무료)</td>
-                    </tr>
-                    <tr>
-                        <td>주유비 / 톨게이트</td>
-                        <td>약 70,000</td>
-                        <td>서울 ↔ 강릉 왕복 기준</td>
-                    </tr>
-                    <tr class="total-row">
-                        <td>총 예상 비용</td>
-                        <td>약 740,000 ~ 890,000 원</td>
-                        <td>여유 자금 포함 90만 원 권장</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="references" style="margin-top: 50px; font-size: 0.9rem; color: #666;">
-            <h3>📎 참고 자료 모음</h3>
-            <ul>
-                <li><strong>유용한 앱:</strong> 카카오맵 (평점 검색용), 강릉패스 (지역 관광정보)</li>
-                <li>본 가이드북은 네이버 지도, 카카오맵, 육아 커뮤니티 평점, 강릉 지역 맘카페 후기 데이터를 종합하여 16개월 영아 동반에 최적화된 장소만을 선별해 작성되었습니다.</li>
-            </ul>
-        </section>
-
-    </div>
 </body>
 </html>
